@@ -1,2 +1,2 @@
-# After-Dark
+# After_Dark
 A Simple game website where you can find chapters and fragments to solve the puzzle.
