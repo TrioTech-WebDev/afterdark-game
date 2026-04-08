@@ -1,0 +1,191 @@
+/* MOBILE-FIRST LAYOUT */
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.main-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+}
+
+.logo {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Hamburger button */
+.nav-toggle {
+  font-size: 24px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Nav links hidden by default on mobile */
+.nav {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 10px 0;
+
+  position: absolute;
+  top: 55px;
+  left: 0;
+}
+
+/* Show nav when active */
+.nav.active {
+  display: flex;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 15px;
+  display: block;
+}
+
+.nav a:hover {
+  color: #ff4d4d;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; 
+  padding-top: 80px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  overflow: hidden; 
+}
+
+.bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  width: 100%;
+}
+
+/* DARK CARD */
+.dark-card {
+    width: 15rem; 
+    background: rgb(0, 0, 0) !important; 
+    color: white !important; 
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: none !important;
+    transition: 0.3s;
+}
+
+/* CARD HOVER */
+.dark-card:hover {
+    transform: scale(1.05);
+}
+
+/* CARD IMAGE */
+.dark-card img {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    display: block;
+}
+
+/* CARD BODY */
+.dark-card .card-body {
+    background: transparent !important; 
+    color: white !important;
+}
+
+.btn-danger {
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+  width: 100%;
+  text-align: center;
+  transition: 0.3s;
+  border-radius: 8px;
+  padding: 10px 0;
+}
+
+.btn-danger:hover {
+  background: rgba(255,77,77,0.1);
+  color: #ff1a1a;
+  border-color: #ff1a1a;
+}
+
+/* TABLET AND DESKTOP OVERRIDES */
+@media (min-width: 481px) {
+  .nav {
+    display: flex !important;
+    flex-direction: row;
+    gap: 20px;
+    position: static;
+    background: none;
+    width: auto;
+    padding: 0;
+  }
+  .nav-toggle {
+    display: none;
+  }
+
+  .content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .dark-card {
+    width: 45%;
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .dark-card {
+    width: 15rem;
+  }
+}

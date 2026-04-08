@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>After Dark</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="Css/home.css">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="main-nav">
+  <a href="#" class="logo">After Dark</a>
+
+  <!-- Hamburger menu -->
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+  <ul class="nav">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="#">Chapters</a></li>
+    <li><a href="#">Creators</a></li>
+  </ul>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <!-- VIDEO BACKGROUND -->
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="Assets/introvideo.mp4" type="video/mp4">
+  </video>
+
+  <!-- DARK OVERLAY -->
+  <div class="overlay"></div>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <!-- CARD 1 -->
+    <div class="card dark-card">
+      <img src="Assets/ch-1.png" class="card-img-top" alt="Chapter 1 Image">
+      <div class="card-body">
+        <h5 class="card-title">Dark Story 1</h5>
+        <a href="#" class="btn btn-danger">Explore</a>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card dark-card">
+      <img src="Assets/ch-1.png" class="card-img-top" alt="Chapter 2 Image">
+      <div class="card-body">
+        <h5 class="card-title">Dark Story 2</h5>
+        <a href="#" class="btn btn-danger">Explore</a>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card dark-card">
+      <img src="Assets/ch-1.png" class="card-img-top" alt="Chapter 3 Image">
+      <div class="card-body">
+        <h5 class="card-title">Dark Story 3</h5>
+        <a href="#" class="btn btn-danger">Explore</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JS -->
+<script src="Script/home.js"></script>
+</body>
+</html>
