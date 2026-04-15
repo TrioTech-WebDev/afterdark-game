@@ -267,3 +267,34 @@ body {
 .footer-title{
   color: #0dff00bf;
 }
+
+/* Testing Fragment styling */
+.fragment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.fragment-item {
+  text-decoration: none;
+  color: #e5ddd0;
+  font-size: 12px;
+}
+
+.fragment-item img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(201,168,76,0.3);
+  transition: 0.3s;
+}
+
+.fragment-item img:hover {
+  transform: scale(1.05);
+  border-color: var(--gold);
+}
+
+.fragment-item p {
+  margin-top: 6px;
+}
