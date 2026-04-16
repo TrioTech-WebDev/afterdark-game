@@ -55,8 +55,10 @@
             <!-- Chapter Card -->
             <div class="col-12 col-sm-6 col-md-4 mb-4">
                 <a href="../Podcast-logo/podcast-logo.html" class="text-decoration-none card-link">
-                    <div class="card bg-dark text-white h-100">
+                    <div class="card bg-dark text-white h-100 chapter-card">
+                        <div class="chapter-img-wrap">
                         <img src="../Assets/img/podcast-logo.png" class="card-img-top" alt="Chapter 1">
+                        </div>
                         <div class="card-body text-center">
                             <h5 class="card-title mt-1">Podcast Logo</h5>
                         </div>
@@ -79,59 +81,58 @@
   <div class="container text-center">
 
     <h3 class="text-gold mb-4">Find the Fragments</h3>
-
-    <div id="fragmentGrid" class="fragment-grid">
-       <script>
+   <div id="fragmentGrid" class="row g-3 justify-content-center">
+    <script>
 const fragments = [
   {
     name: "Candles",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/candles.png",
     link: "../Podcast-logo/candles.html?from=podcast-logo"
   },
   {
     name: "Calendar",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/calendar.png",
     link: "../Podcast-logo/calendar.html?from=podcast-logo"
   },
   {
     name: "Ouija Board",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/ouija-board.png",
     link: "../Podcast-logo/ouija-board.html?from=podcast-logo"
   },
 
   {
     name: "Cookies",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/cookies.png",
     link: "../A-cross/cookies.html?from=a-cross"
   },
 
   {
     name: "Planchette",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/planchette.png",
     link: "../A-cross/planchette.html?from=a-cross"
   },
 
   {
     name: "Birthday Cake",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/birthday-cake.png",
     link: "../A-cross/birthday-cake.html?from=a-cross"
   },
 
   {
     name: "Tombstone",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/tombstone-with-lola-name.png",
     link: "../Female-demon/tombstone-with-lola-name.html?from=female-demon"
   },
 
   {
     name: "Bible",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/bible.png",
     link: "../Female-demon/bible.html?from=female-demon"
   },
 
   {
     name: "Bloody Mic",
-    img: "../Assets/img/podcast-logo-entry.png",
+    img: "../Assets/img/bloody-microphone.png",
     link: "../Female-demon/bloody-microphone.html?from=female-demon"
   }
 ];
@@ -145,18 +146,37 @@ function shuffle(array) {
 const grid = document.getElementById("fragmentGrid");
 
 shuffle(fragments).forEach(fragment => {
-  const item = `
-    <a href="${fragment.link}" class="fragment-item">
-      <img src="${fragment.img}" alt="${fragment.name}">
-      <p>${fragment.name}</p>
+const item = `
+  <div class="col-6 col-sm-4 col-md-3">
+    <a href="${fragment.link}" class="text-decoration-none card-link">
+      <div class="card bg-dark text-white h-100 chapter-card fragment-card">
+        
+        <div class="chapter-img-wrap">
+          <img src="${fragment.img}" alt="${fragment.name}">
+        </div>
+
+        <div class="card-body text-center">
+          <h6 class="card-title">${fragment.name}</h6>
+        </div>
+
+      </div>
     </a>
-  `;
+  </div>
+`;
   grid.innerHTML += item;
 });
 
 </script>
     </div>
 
+  </div>
+</section>
+<section>
+<section class="solve-section">
+  <div class="text-center">
+    <a href="../Podcast-logo/solve-podcast-logo.html" class="reward-btn-home">
+      Solve Podcast Logo
+    </a>
   </div>
 </section>
 

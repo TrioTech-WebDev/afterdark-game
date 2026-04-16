@@ -2,7 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap");
 
 :root {
-  --gold: rgb(233, 177, 9);
+  --gold:rgb(233, 177, 9) ;;
+
   --dark-bg: #0d0d18;
 }
 
@@ -51,6 +52,7 @@ body {
   background: rgba(10, 10, 20, 0.95);
 }
 
+
 #navbar .navbar-brand {
   font-family: 'Cinzel', serif;
   color: var(--gold) !important;
@@ -79,6 +81,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  
 }
 
 .hamburger span {
@@ -87,6 +90,7 @@ body {
   height: 2px;
   background: var(--gold);
   border-radius: 2px;
+  
 }
 
 /* Mobile menu */
@@ -126,14 +130,17 @@ body {
   padding: 0;
   margin: 0;
   text-align: center;
+  
 }
 
 .mobile-menu ul li {
   margin-top: 2.15rem;
+  
 }
 
 .menu-link {
   font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
   color: #e5ddd0;
   text-decoration: none;
   font-size: 16px;
@@ -174,22 +181,13 @@ body {
   color: var(--gold);
 }
 
-/* Any h3.text-gold used as a section title */
-h3.text-gold,
-.section-heading {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.2rem, 4vw, 1.6rem);
-  letter-spacing: 0.06em;
-  color: var(--gold);
-}
-
 .hero-desc {
   color: #9a9080;
   font-size: 0.95rem;
   max-width: 500px;
   margin: 0 auto 28px;
   line-height: 1.8;
-  text-align: justify;
+  text-align:justify;
 }
 
 /* Audio player box */
@@ -211,6 +209,7 @@ h3.text-gold,
   margin-bottom: 10px;
 }
 
+
 /* Sections */
 .page-section {
   position: relative;
@@ -223,19 +222,9 @@ h3.text-gold,
   background: rgba(5, 5, 14, 0.90);
 }
 
-/* ─────────────────────────────────────────
-   CHAPTER CARDS (index.html)
-   Constrained so they never fill the whole viewport
-   ───────────────────────────────────────── */
-.card-link .card {
-  max-width: 320px;
-  margin: 0 auto;
-  transition: transform 0.3s, border-color 0.3s;
-}
 
-.card-link .card .card-img-top {
-  height:400px;
-  object-fit: cover;
+.card-link .card {
+  transition: transform 0.3s, border-color 0.3s;
 }
 
 .card-link .card:hover {
@@ -243,23 +232,27 @@ h3.text-gold,
   border-color: var(--gold) !important;
 }
 
+
+
+
 /* How to play */
+
 .step-box {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;       
+  align-items: center;         
+  justify-content: center;      
+  gap: 10px;                    
   background: rgba(201, 168, 76, 0.04);
   border: 1px solid rgba(255, 187, 0, 0.15);
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 12px;
   color: #e5ddd0;
-  text-align: center;
-}
+  text-align: center;      
+}   
 
-.step-box p {
+.step-box p{
   font-size: 16px;
 }
 
@@ -269,14 +262,13 @@ h3.text-gold,
   z-index: 1;
   background: rgb(5, 5, 14);
   border-top: 1px solid rgba(201, 168, 76, 0.12);
-  color: rgba(233, 177, 9, 0.589);
+  color:rgba(233, 177, 9, 0.589) ;
 }
-
-.footer-title {
+.footer-title{
   color: #0dff00bf;
 }
 
-/* Fragment grid */
+/* Testing Fragment styling */
 .fragment-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -294,7 +286,7 @@ h3.text-gold,
   height: 90px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid rgba(201, 168, 76, 0.3);
+  border: 1px solid rgba(201,168,76,0.3);
   transition: 0.3s;
 }
 
@@ -306,6 +298,7 @@ h3.text-gold,
 .fragment-item p {
   margin-top: 6px;
 }
+
 
 /* =============================
    PUZZLE WRAPPER
@@ -343,6 +336,7 @@ h3.text-gold,
   cursor: pointer;
   transition: 0.25s ease;
   overflow: hidden;
+  
 }
 
 .puzzle-tile img {
@@ -402,7 +396,7 @@ h3.text-gold,
 }
 
 /* =============================
-   PUZZLE BUTTON
+   BUTTON
 ============================= */
 .puzzle-btn {
   padding: 10px 24px;
@@ -420,83 +414,77 @@ h3.text-gold,
   box-shadow: 0 0 12px rgba(233, 177, 9, 0.5);
 }
 
-/* ─────────────────────────────────────────
-   CREATORS SECTION
-   ───────────────────────────────────────── */
-.creators-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  max-width: 700px;
-  margin: 0 auto;
+
+@media (max-width: 600px) {
+
+  /* Move puzzle section up */
+  .hero-section {
+    padding: 80px 16px 40px !important;
+    min-height: unset;
+  }
+
+  .puzzle-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px; /* reduced from 24px */
+  }
+
+  .puzzle-grid {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: 320px;
+    gap: 10px;
+  }
+
+  .puzzle-tile {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    position: relative;
+    margin-top: 0;
+  }
+
+  .puzzle-tile img {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+  }
+
+  .puzzle-right {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    gap: 10px; /* reduced from 14px */
+  }
+
+  .puzzle-slots {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .puzzle-slot {
+    width: 90px;
+    height: 90px;
+  }
+
+  /* Tighten the heading + description spacing */
+  .hero-desc {
+    margin-bottom: 12px !important;
+  }
+
+  h3.text-gold {
+    margin-bottom: 8px !important;
+  }
 }
 
-.creator-card {
-  background: rgba(201, 168, 76, 0.06);
-  border: 1px solid rgba(201, 168, 76, 0.25);
-  border-radius: 12px;
-  padding: 24px 16px;
-  text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
 
-.creator-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  box-shadow: 0 0 16px rgba(233, 177, 9, 0.2);
-}
-
-.creator-card .creator-name {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  color: #ffffff;
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-
-.creator-card .creator-role {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin: 0;
-}
-
-/* ─────────────────────────────────────────
-   PODCAST-LOGO PAGE — chapter card styling
-   ───────────────────────────────────────── */
-#chapter-hero .card {
-  background: rgba(201, 168, 76, 0.06) !important;
-  border: 1px solid rgba(201, 168, 76, 0.25) !important;
-  border-radius: 14px;
-  overflow: hidden;
-  max-width: 300px;
-  margin: 0 auto;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-#chapter-hero .card:hover {
-  transform: translateY(-5px);
-  border-color: var(--gold) !important;
-  box-shadow: 0 0 18px rgba(233, 177, 9, 0.25);
-}
-
-#chapter-hero .card-img-top {
-  height: 200px;
-  object-fit: cover;
-}
-
-#chapter-hero .card-title {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
-  color: #ffffff;
-  margin: 0;
-}
-
+/* Reward Section */
 /* =============================
-   REWARD PAGE
+   REWARD PAGE (full-*.html)
 ============================= */
 .reward-section {
   position: relative;
@@ -591,243 +579,13 @@ h3.text-gold,
   margin-bottom: 20px;
   opacity: 0.92;
 }
-/* Solve button spacing fix */
-.solve-section {
-  margin-top: 30px;     /* reduced top space */
-  margin-bottom: 60px;  /* space before footer */
-}
-/* =====================================================
-   RESPONSIVE — MOBILE BREAKPOINTS
-   ===================================================== */
 
-/* Tablet and below */
-@media (max-width: 768px) {
-  #chapter-hero {
-    padding: 90px 16px 40px !important;
-  }
-}
-
-/* Small phones */
 @media (max-width: 600px) {
-  .hero-section {
-    padding: 80px 16px 40px !important;
-    min-height: unset;
-  }
-
-  .hero-desc {
-    margin-bottom: 12px !important;
-  }
-
-  h3.text-gold {
-    margin-bottom: 8px !important;
-  }
-
-  /* Puzzle */
-  .puzzle-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
-
-  .puzzle-grid {
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    max-width: 320px;
-    gap: 10px;
-  }
-
-  .puzzle-tile {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-    position: relative;
-    margin-top: 0;
-  }
-
-  .puzzle-tile img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70%;
-  }
-
-  .puzzle-right {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 320px;
-    gap: 10px;
-  }
-
-  .puzzle-slots {
-    flex-direction: row;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .puzzle-slot {
-    width: 90px;
-    height: 90px;
-  }
-
-  /* Reward page */
   .reward-card {
     padding: 28px 18px;
   }
-
   .reward-chapter-img {
     width: 80px;
     height: 80px;
   }
-}
-
-/* Extra small phones */
-@media (max-width: 480px) {
-  /* Chapter cards on index */
-  .card-link .card {
-    max-width: 260px;
-  }
-
-  .card-link .card .card-img-top {
-    height: 160px;
-  }
-
-  /* Creators: single column */
-  .creators-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-  }
-
-  /* Audio box */
-  .audio-box {
-    padding: 14px;
-  }
-
-  .audio-box audio {
-    width: 100%;
-  }
-
-  /* Solve button */
-  .text-center .btn-warning {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-/* Tiny phones */
-@media (max-width: 360px) {
-  .fragment-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-}
-
-
-
-/* Wrapper controls image display area */
-.chapter-img-wrap {
-  width: 100%;
-  background: #111;               /* dark bg behind image */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  min-height: 180px;
-}
-
-/* Image fits fully inside — no cropping ever */
-.chapter-img-wrap img {
-  max-width: 100%;
-  max-height: 200px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Card title consistent with site fonts */
-.chapter-card .card-title {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  color: #ffffff;
-  margin-bottom: 6px;
-}
-
-/* ─────────────────────────────────────────
-   COMPLETED BADGE
-   Overlays the card when chapter is done
-   ───────────────────────────────────────── */
-.chapter-card {
-  position: relative;
-}
-
-.chapter-done-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.75);
-  color: #00ff88;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 4px 10px;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 255, 136, 0.4);
-  pointer-events: none;
-  z-index: 10;
-}
-
-/* ─────────────────────────────────────────
-   EPILOGUE BUTTON
-   Only shows when all 3 chapters done
-   ───────────────────────────────────────── */
-.btn-epilogue {
-  display: inline-block;
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  letter-spacing: 0.1em;
-  color: #000;
-  background: var(--gold);
-  border-radius: 8px;
-  padding: 14px 36px;
-  text-decoration: none;
-  font-weight: 700;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  animation: pulse-gold 2s infinite;
-}
-
-.btn-epilogue:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(233, 177, 9, 0.6);
-  color: #000;
-}
-
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 10px rgba(233,177,9,0.4); }
-  50%       { box-shadow: 0 0 24px rgba(233,177,9,0.8); }
-}
-
-/* ─────────────────────────────────────────
-   RESET BUTTON
-   ───────────────────────────────────────── */
-.btn-reset {
-  background: none;
-  border: 1px solid rgba(201, 168, 76, 0.35);
-  color: rgba(201, 168, 76, 0.6);
-  font-family: 'Lato', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  padding: 7px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.btn-reset:hover {
-  border-color: var(--gold);
-  color: var(--gold);
 }
