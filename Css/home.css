@@ -45,6 +45,7 @@ body {
   background: transparent;
   transition: background 0.3s;
   z-index: 200;
+  font-family: 'Cinzel', serif;
 }
 
 #navbar.scrolled {
@@ -270,10 +271,12 @@ h3.text-gold,
   background: rgb(5, 5, 14);
   border-top: 1px solid rgba(201, 168, 76, 0.12);
   color: rgba(233, 177, 9, 0.589);
+  
 }
 
 .footer-title {
   color: #0dff00bf;
+  font-family: 'Cinzel', serif;
 }
 
 /* Fragment grid */
@@ -418,6 +421,129 @@ h3.text-gold,
 .puzzle-btn:hover {
   transform: scale(1.05);
   box-shadow: 0 0 12px rgba(233, 177, 9, 0.5);
+}
+.puzzle-tile-done {
+  opacity: 0.25;
+  filter: grayscale(100%) brightness(0.4);
+  cursor: not-allowed !important;
+  pointer-events: none;
+  position: relative;
+}
+
+.puzzle-tile-done::after {
+  content: "🔒";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.4rem;
+  opacity: 0.7;
+}
+/*  */
+/*  */
+/*  */
+/* ── Chapter card must be position:relative for overlays ── */
+.chapter-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── ✅ Green completed badge (top-right corner of card) ── */
+.chapter-done-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.75);
+  color: #4caf50;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #4caf50;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ── 🔒 Dark overlay on completed chapter card (index page) ── */
+.chapter-completed-overlay {
+  position: absolute;
+  inset: 0;                          /* covers entire card */
+  background: rgba(0, 0, 0, 0.68);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 5;
+  border-radius: inherit;
+}
+
+.overlay-lock {
+  font-size: 2.2rem;
+  filter: grayscale(0.3);
+}
+
+.overlay-text {
+  color: #aaa;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ── Fragment card dark state (chapter pages) ────────────── */
+.fragment-card.fragment-completed {
+  opacity: 0.38;
+  filter: grayscale(80%) brightness(0.5);
+  cursor: default;
+}
+
+/* ── ✅ Small stamp on completed fragment cards ──────────── */
+.fragment-done-stamp {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 1.1rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ── Epilogue button (glowing gold) ─────────────────────── */
+.btn-epilogue {
+  display: inline-block;
+  background: linear-gradient(135deg, #e9b109, #c9880a);
+  color: #000;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 14px 36px;
+  border-radius: 12px;
+  text-decoration: none;
+  animation: pulseGlow 2s infinite;
+  transition: transform 0.2s;
+}
+.btn-epilogue:hover {
+  transform: scale(1.04);
+  color: #000;
+}
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 0 20px rgba(233,177,9,0.4); }
+  50%      { box-shadow: 0 0 42px rgba(233,177,9,0.85); }
+}
+
+/* ── Reset button ────────────────────────────────────────── */
+.btn-reset {
+  background: transparent;
+  color: #666;
+  border: 1px solid #333;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-reset:hover {
+  color: #e9b109;
+  border-color: #e9b109;
 }
 
 /* ─────────────────────────────────────────
@@ -685,6 +811,11 @@ h3.text-gold,
 
 /* Extra small phones */
 @media (max-width: 480px) {
+
+  .hero-title {
+    font-size: clamp(1.3rem, 8vw, 2.4rem);
+    letter-spacing: 0.06em;
+  }
   /* Chapter cards on index */
   .card-link .card {
     max-width: 260px;
@@ -721,6 +852,10 @@ h3.text-gold,
   .fragment-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+  }
+  .hero-title {
+
+    letter-spacing: 0.04em;
   }
 }
 
@@ -830,4 +965,293 @@ h3.text-gold,
 .btn-reset:hover {
   border-color: var(--gold);
   color: var(--gold);
+}
+/* Pool of draggable chapter cards — stacked column like puzzle-right */
+.order-pool {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Each draggable card — reuses puzzle-tile base, adds label */
+.order-card {
+  width: 110px;
+  height: 110px;
+  flex-direction: column;
+  gap: 6px;
+  cursor: grab;
+}
+
+.order-card img {
+  width: 65%;
+  height: 65%;
+  object-fit: contain;
+}
+
+.order-card-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  color: #e9b109;
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+
+.order-card.dragging {
+  opacity: 0.35;
+  cursor: grabbing;
+}
+
+/* Greys out a card that has been placed into a slot */
+.order-card.placed {
+  opacity: 0.25;
+  filter: grayscale(80%);
+  pointer-events: none;
+}
+
+/* Slot rows — number + slot side by side */
+.order-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-slot-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-slot-number {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: #e9b109;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* The slot itself reuses .puzzle-slot from home.css */
+/* Just override size to match the card */
+.order-slot {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+/* Highlight when dragging over */
+.order-slot.drag-over {
+  border-color: #e9b109 !important;
+  background: rgba(233,177,9,0.1) !important;
+}
+
+/* Slot filled state */
+.order-slot.active {
+  border-style: solid;
+  border-color: rgba(233,177,9,0.5);
+}
+
+.order-slot img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+/* ✕ remove button inside a filled slot */
+.order-slot-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.85rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+.order-slot-remove:hover { color: #e9b109; }
+
+/* Mobile — stack pool on top, slots below (same as puzzle-wrapper mobile) */
+@media (max-width: 600px) {
+  .order-pool {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .order-card {
+    width: 90px;
+    height: 90px;
+  }
+  .order-slot {
+    width: 86px;
+    height: 86px;
+  }
+}
+
+
+/* ── Audio Player ───────────────────────────────────────────────── */
+.ad-audio-player {
+  background: rgba(201,168,76,0.06);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  max-width: 520px;
+  width: 100%;
+  backdrop-filter: blur(1px);
+}
+
+.audio-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.audio-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Play/Pause circle button */
+.audio-btn {
+  background: var(--gold);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark);
+  font-size: 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.audio-btn:hover {
+  background: var(--gold-light);
+  transform: scale(1.08);
+}
+
+/* Progress bar track + fill */
+.audio-progress-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.audio-progress-bg {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.audio-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--gold);
+  border-radius: 4px;
+  transition: width 0.1s linear;
+}
+
+/* Time display */
+.audio-time {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  min-width: 36px;
+  text-align: right;
+  font-family: var(--font-body);
+}
+
+/* Volume */
+.audio-vol {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.vol-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 3px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.15);
+  outline: none;
+  cursor: pointer;
+}
+
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+}
+
+.vol-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+}
+
+/* Hide volume on very small screens */
+@media (max-width: 380px) {
+  .audio-vol { display: none; }
+}
+/* Hide volume on very small screens */
+@media (max-width: 280px) {
+  .audio-vol { display: none; }
+}
+.flip {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+/* Volume on its own row below the progress bar */
+.audio-vol-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(201,168,76,0.15);
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.vol-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+.vol-slider {
+  flex: 1;
+  max-width: 160px;
+}
+
+/* Remove the old hide rule — volume is always visible now */
+@media (max-width: 380px) {
+  .audio-vol { display: none; }
 }

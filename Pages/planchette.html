@@ -21,10 +21,9 @@
 
             <!-- Desktop menu links (hidden on mobile) -->
             <ul class="nav d-none d-lg-flex">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#chapters">Chapter</a></li>
-                <li class="nav-item"><a class="nav-link" href="#howtoplay">Instructions</a></li>
-                <li class="nav-item"><a class="nav-link" href="#creators">Creators</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#chapters">Chapters</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#howtoplay">Instructions</a></li>
             </ul>
 
             <!-- Hamburger button (mobile only) -->
@@ -41,10 +40,9 @@
     <div class="mobile-menu" id="mobileMenu">
         <button class="menu-close" id="menuClose">&times;</button>
         <ul>
-            <li><a href="#home" class="menu-link">Home</a></li>
-            <li><a href="#chapters" class="menu-link">Chapter</a></li>
-            <li><a href="#howtoplay" class="menu-link">Instructions</a></li>
-            <li><a href="#creators" class="menu-link">Creators</a></li>
+            <li><a href="../index.html" class="menu-link">Home</a></li>
+            <li><a href="../index.html#chapters" class="menu-link">Chapters</a></li>
+            <li><a href="../index.html#howtoplay" class="menu-link">Instructions</a></li>
         </ul>
     </div>
 
@@ -83,34 +81,33 @@
     <footer class="text-center py-3 bg-dark site-footer">
         <p class="text-warning d-block mb-1 footer-title">After Dark</p>
         <p class="small mb-1">Round Table After Dark · Inspired by Ravensburger Echoes</p>
-        <p class="small mb-0">&copy; 2025 After Dark Crew. All rights reserved.</p>
+        <p class="small mb-0">&copy; 2026 After Dark Team. All rights reserved.</p>
     </footer>
-
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="../Script/home.js"></script>
     <script>
-// Get where user came from
-const params = new URLSearchParams(window.location.search);
-const from = params.get("from");
+        // Get where user came from
+        const params = new URLSearchParams(window.location.search);
+        const from = params.get("from");
 
-// Map chapters
-const chapterPages = {
-  "podcast-logo": "../Podcast-logo/podcast-logo.html",
-  "a-cross": "../A-cross/a-cross.html",
-  "female-demon": "../Female-demon/female-demon.html"
-};
+        // Map chapters
+        const chapterPages = {
+            "podcast-logo": "../Podcast-logo/podcast-logo.html",
+            "a-cross": "../A-cross/a-cross.html",
+            "female-demon": "../Female-demon/female-demon.html"
+        };
 
-// Set back button
-const backBtn = document.getElementById("backBtn");
+        // Set back button
+        const backBtn = document.getElementById("backBtn");
 
-if (from && chapterPages[from]) {
-  backBtn.href = chapterPages[from];
-} else {
-  backBtn.href = "../index.html"; // fallback
-}
-</script>
+        if (from && chapterPages[from]) {
+            backBtn.href = chapterPages[from];
+        } else {
+            backBtn.href = "../index.html"; // fallback
+        }
+    </script>
 </body>
 
 </html>

@@ -1,154 +1,159 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A-Cross</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A-Cross</title>
 
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../Css/home.css" />
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../Css/home.css" />
 </head>
 
 <body>
-    <!-- Navbar-->
-    <nav class="navbar navbar-dark fixed-top" id="navbar">
-        <div class="container">
+  <!-- Navbar-->
+  <nav class="navbar navbar-dark fixed-top" id="navbar">
+    <div class="container">
 
 
-            <a class="navbar-brand fw-bold" href="../index.html">After Dark</a>
+      <a class="navbar-brand fw-bold" href="../index.html">After Dark</a>
 
-            <!-- Desktop menu links (hidden on mobile) -->
-            <ul class="nav d-none d-lg-flex">
-                <li class="nav-item"><a class="nav-link" href="cookies.html">Cookies</a></li>
-                <li class="nav-item"><a class="nav-link" href="planchette.html">Planchette</a></li>
-                <li class="nav-item"><a class="nav-link" href="birthday-cake.html">Birthday Cake</a></li>
-    
-            </ul>
+      <!-- Desktop menu links (hidden on mobile) -->
+      <ul class="nav d-none d-lg-flex">
+        <li class="nav-item"><a class="nav-link" href="cookies.html">Cookies</a></li>
+        <li class="nav-item"><a class="nav-link" href="planchette.html">Planchette</a></li>
+        <li class="nav-item"><a class="nav-link" href="birthday-cake.html">Birthday Cake</a></li>
 
-            <!-- Hamburger button (mobile only) -->
-            <button class="hamburger d-lg-none" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+      </ul>
 
-        </div>
-    </nav>
+      <!-- Hamburger button (mobile only) -->
+      <button class="hamburger d-lg-none" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="menu-close" id="menuClose">&times;</button>
-        <ul>
-            <li><a href="#home" class="menu-link">Home</a></li>
-            <li><a href="#chapters" class="menu-link">Chapter</a></li>
-            <li><a href="#howtoplay" class="menu-link">Instructions</a></li>
-            <li><a href="#creators" class="menu-link">Creators</a></li>
-        </ul>
     </div>
+  </nav>
 
-    <!-- Chapter Section -->
-    <section id="chapter-hero" class="hero-section text-center" style="padding: 100px 20px;">
-        <div class="container d-flex flex-column align-items-center">
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="menu-close" id="menuClose">&times;</button>
+    <ul>
+      <li><a href="#home" class="menu-link">Home</a></li>
+      <li><a href="#chapters" class="menu-link">Chapter</a></li>
+      <li><a href="#howtoplay" class="menu-link">Instructions</a></li>
+      <li><a href="#creators" class="menu-link">Creators</a></li>
+    </ul>
+  </div>
 
-            <!-- Chapter Card -->
-            <div class="col-12 col-sm-6 col-md-4 mb-4">
-                <a href="../A-cross/a-cross.html" class="text-decoration-none card-link">
-                    <div class="card bg-dark text-white h-100 chapter-card">
-                        <div class="chapter-img-wrap">
-                            <img src="../Assets/img/a-cross.png" class="card-img-top" alt="Chapter 1">
-                        </div>
-                        <div class="card-body text-center">
-                            <h5 class="card-title mt-1">A-Cross</h5>
-                        </div>
-                    </div>
-                </a>
+  <!-- Chapter Section -->
+  <section id="chapter-hero" class="hero-section text-center" style="padding: 100px 20px;">
+    <div class="container d-flex flex-column align-items-center">
+
+      <!-- Chapter Card -->
+      <div class="col-12 col-sm-6 col-md-4 mb-4">
+        <a href="../A-cross/a-cross.html" class="text-decoration-none card-link">
+          <div class="card bg-dark text-white h-100 chapter-card">
+            <div class="chapter-img-wrap">
+              <img src="../Assets/img/a-cross.png" class="card-img-top" alt="Chapter 1">
             </div>
-
-
-            <div class="mb-4"></div>
-
-            <!-- Audio Player -->
-            <div class="audio-box mx-auto">
-                <p class="audio-label text-warning">🎧 A-Cross Audio</p>
-                <audio id="mainAudio" controls src="../Assets/audio/a-cross.mp3"></audio>
+            <div class="card-body text-center">
+              <h5 class="card-title mt-1">A-Cross</h5>
             </div>
+          </div>
+        </a>
+      </div>
 
+
+      <div class="mb-4"></div>
+
+      <!-- Audio Player -->
+      <div class="audio-box mx-auto">
+        <p class="audio-label text-warning">🎧 A-Cross Audio</p>
+        <audio id="mainAudio" controls src="../Assets/audio/a-cross.mp3"></audio>
+      </div>
+      <section class="solve-section">
+        <div class="text-center">
+          <a href="../A-cross/solve-a-cross.html" class="reward-btn-home">
+            Solve A Cross
+          </a>
         </div>
-    </section>
-    <section class="fragment-section">
-  <div class="container text-center">
+      </section>
+    </div>
+  </section>
+  <section class="fragment-section">
+    <div class="container text-center">
 
-    <h3 class="text-gold mb-4">Find the Fragments</h3>
+      <h3 class="text-gold mb-4">Find the Fragments</h3>
 
-     <div id="fragmentGrid" class="row g-3 justify-content-center">
-    <script>
-const fragments = [
-  {
-    name: "Candles",
-    img: "../Assets/img/candles.png",
-    link: "../Pages/candles.html"
-  },
-  {
-    name: "Calendar",
-    img: "../Assets/img/calendar.png",
-    link: "../Pages/calendar.html"
-  },
-  {
-    name: "Ouija Board",
-    img: "../Assets/img/ouija-board.png",
-    link: "../Pages/ouija-board.html"
-  },
+      <div id="fragmentGrid" class="row g-3 justify-content-center">
+        <script>
+          const fragments = [
+            {
+              name: "Candles",
+              img: "../Assets/img/candles.png",
+              link: "../Pages/candles.html"
+            },
+            {
+              name: "Calendar",
+              img: "../Assets/img/calendar.png",
+              link: "../Pages/calendar.html"
+            },
+            {
+              name: "Ouija Board",
+              img: "../Assets/img/ouija-board.png",
+              link: "../Pages/ouija-board.html"
+            },
 
-  {
-    name: "Cookies",
-    img: "../Assets/img/cookies.png",
-    link: "../Pages/cookies.html"
-  },
+            {
+              name: "Cookies",
+              img: "../Assets/img/cookies.png",
+              link: "../Pages/cookies.html"
+            },
 
-  {
-    name: "Planchette",
-    img: "../Assets/img/planchette.png",
-    link: "../Pages/planchette.html"
-  },
+            {
+              name: "Planchette",
+              img: "../Assets/img/planchette.png",
+              link: "../Pages/planchette.html"
+            },
 
-  {
-    name: "Birthday Cake",
-    img: "../Assets/img/birthday-cake.png",
-    link: "../Pages/birthday-cake.html"
-  },
+            {
+              name: "Birthday Cake",
+              img: "../Assets/img/birthday-cake.png",
+              link: "../Pages/birthday-cake.html"
+            },
 
-  {
-    name: "Tombstone",
-    img: "../Assets/img/tombstone-with-lola-name.png",
-    link: "../Pages/tombstone-with-lola-name.html"
-  },
+            {
+              name: "Tombstone",
+              img: "../Assets/img/tombstone-with-lola-name.png",
+              link: "../Pages/tombstone-with-lola-name.html"
+            },
 
-  {
-    name: "Bible",
-    img: "../Assets/img/bible.png",
-    link: "../Pages/bible.html"
-  },
+            {
+              name: "Bible",
+              img: "../Assets/img/bible.png",
+              link: "../Pages/bible.html"
+            },
 
-  {
-    name: "Bloody Mic",
-    img: "../Assets/img/bloody-microphone.png",
-    link: "../Pages/bloody-microphone.html"
-  }
-];
-
-
-function shuffle(array) {
-  return array.sort(() => Math.random() - 0.5);
-}
+            {
+              name: "Bloody Mic",
+              img: "../Assets/img/bloody-microphone.png",
+              link: "../Pages/bloody-microphone.html"
+            }
+          ];
 
 
-const grid = document.getElementById("fragmentGrid");
+          function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
+          }
 
-shuffle(fragments).forEach(fragment => {
-const item = `
+
+          const grid = document.getElementById("fragmentGrid");
+
+          shuffle(fragments).forEach(fragment => {
+            const item = `
   <div class="col-6 col-sm-4 col-md-3">
     <a href="${fragment.link}" class="text-decoration-none card-link">
       <div class="card bg-dark text-white h-100 chapter-card fragment-card">
@@ -165,35 +170,35 @@ const item = `
     </a>
   </div>
 `;
-  grid.innerHTML += item;
-});
+            grid.innerHTML += item;
+          });
 
-</script>
-  </div>
+        </script>
+      </div>
 
 
-  </div>
-</section>
-<section class="solve-section">
-  <div class="text-center">
-    <a href="../A-cross/solve-a-cross.html" class="reward-btn-home">
-      Solve A Cross
-    </a>
-  </div>
-</section>
+    </div>
+  </section>
+  <section class="solve-section">
+    <div class="text-center">
+      <a href="../A-cross/solve-a-cross.html" class="reward-btn-home">
+        Solve A Cross
+      </a>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="text-center py-3 bg-dark site-footer">
-        <p class="text-warning d-block mb-1 footer-title">After Dark</p>
-        <p class="small mb-1">Round Table After Dark · Inspired by Ravensburger Echoes</p>
-        <p class="small mb-0">&copy; 2025 After Dark Crew. All rights reserved.</p>
-    </footer>
+  <!-- Footer -->
+  <footer class="text-center py-3 bg-dark site-footer">
+    <p class="text-warning d-block mb-1 footer-title">After Dark</p>
+    <p class="small mb-1">Round Table After Dark · Inspired by Ravensburger Echoes</p>
+    <p class="small mb-0">&copy; 2026 After Dark Team. All rights reserved.</p>
+  </footer>
 
-    <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../Script/home.js"></script>
-    
+  <script src="../Script/home.js"></script>
+
 </body>
 
 </html>
