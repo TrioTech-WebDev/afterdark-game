@@ -2,81 +2,112 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter Unlocked — After Dark</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../Css/home.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Epilogue — After Dark</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../Css/home.css" />
 </head>
 
 <body>
-    <!-- Navbar-->
-    <nav class="navbar navbar-dark fixed-top" id="navbar">
-        <div class="container">
-
-
-            <a class="navbar-brand fw-bold" href="../index.html">After Dark</a>
-
-            <!-- Desktop menu links (hidden on mobile) -->
-            <ul class="nav d-none d-lg-flex">
-                <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="../index.html#chapters">Chapters</a></li>
-                <li class="nav-item"><a class="nav-link" href="../index.html#howtoplay">Instructions</a></li>
-            </ul>
-
-            <!-- Hamburger button (mobile only) -->
-            <button class="hamburger d-lg-none" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-        </div>
-    </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="menu-close" id="menuClose">&times;</button>
-        <ul>
-            <li><a href="../index.html" class="menu-link">Home</a></li>
-            <li><a href="../index.html#chapters" class="menu-link">Chapters</a></li>
-            <li><a href="../index.html#howtoplay" class="menu-link">Instructions</a></li>
-        </ul>
+<!-- Navbar -->
+  <nav class="navbar navbar-dark fixed-top" id="navbar">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">After Dark</a>
+      <ul class="nav d-none d-lg-flex">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#chapters">Chapter</a></li>
+        <li class="nav-item"><a class="nav-link" href="#howtoplay">Instructions</a></li>
+        <li class="nav-item"><a class="nav-link" href="#creators">Creators</a></li>
+      </ul>
+      <!-- Hamburger button (mobile only) -->
+      <button class="hamburger d-lg-none" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </nav>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="menu-close" id="menuClose">&times;</button>
+    <ul>
+      <li><a href="#home" class="menu-link">Home</a></li>
+      <li><a href="#chapters" class="menu-link">Chapter</a></li>
+      <li><a href="#howtoplay" class="menu-link">Instructions</a></li>
+      <li><a href="#creators" class="menu-link">Creators</a></li>
+    </ul>
+  </div>
+  <!-- Epilogue Section -->
+  <section class="reward-section">
+    <div class="reward-card">
 
-    <section class="reward-section">
-        <div class="reward-card">
+      <p class="reward-badge">Epilogue</p>
 
-            <p class="reward-badge">Final Epilogue</p>
+      <!-- Phone icon or image — replace with your phone image if you have one -->
+      <img src="../Assets/img/phone.png" alt="Phone" class="reward-chapter-img" />
 
-            <img src="../Assets/img/phone.png" alt="Phone" class="reward-chapter-img" />
+      <h2 class="reward-title">Phone</h2>
+      <p class="reward-desc">
+        You've unravelled all three chapters and arranged the story in order.<br>
+        Now — a phone rings in the dark. Will you answer?
+      </p>
 
-            <h2 class="reward-title">Conclusion: Phone </h2>
-            <p class="reward-desc">
-                You have completed the final chapter.<br>
-                The story of After Dark is now complete, but the mysteries of the night continue...<br>
-                Thank you for playing, and remember to always stay curious in the darkness.
-            </p>
-
-            <div class="reward-audio-box">
-                <p class="reward-audio-label">🎧 Final Epilogue — Phone</p>
-                <audio controls src="../Assets/audio/full-usb.mp3"></audio>
-            </div>
-
-            <a href="../index.html" class="reward-btn-home">Back to Home</a>
-
+      <!-- Epilogue Audio Player -->
+      <div class="ad-audio-player mx-auto">
+        <div class="audio-label">
+          <span class="music-icon">♫</span>
+          <span>Epilogue Audio</span>
         </div>
-    </section>
+        <div class="audio-controls">
+          <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+          <button class="audio-btn" onclick="stopAudio()">⏹</button>
+          <button class="audio-btn" onclick="replayAudio()">↻</button>
+          <div class="audio-progress-wrap">
+            <div class="audio-progress-bg" id="progressBg" onclick="seekAudio(event)">
+              <div class="audio-progress-bar" id="progressBar"></div>
+            </div>
+            <span class="audio-time" id="audioTime">0:00</span>
+          </div>
+          <div class="audio-vol">
+            🔊
+            <input class="vol-slider" type="range" min="0" max="1" step="0.05" value="1"
+              oninput="setVolume(this.value)" />
+          </div>
+        </div>
+      </div>
 
-    <footer class="text-center py-3 bg-dark site-footer">
-        <p class="text-warning d-block mb-1 footer-title">After Dark</p>
-        <p class="small mb-1">Round Table After Dark · Inspired by Ravensburger Echoes</p>
-        <p class="small mb-0">&copy; 2026 After Dark Team. All rights reserved.</p>
-    </footer>
+      <audio id="mainAudio" src="../Assets/audio/phone.mp3"></audio>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../Script/home.js"></script>
+      <!-- After listening, go to full story -->
+      <div class="mt-4">
+        <p class="small-label mb-2">Ready for the full truth?</p>
+        <a href="full-story.html" class="reward-btn" id="fullStoryBtn" onclick="markEpilogueDone()">
+          Play the Full Story
+        </a>
+      </div>
+
+      <a href="../index.html#chapters" class="reward-btn-home mt-3"
+        style="background:transparent;border:1px solid rgba(233,177,9,0.35);color:var(--gold);margin-top:10px;">
+        Back to Chapters
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer text-center">
+    <p class="footer-title">After Dark</p>
+    <p class="small mb-1">Round Table After Dark · Inspired by Ravensburger Echoes</p>
+    <p class="small mb-0">&copy; 2026 After Dark Team. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../Script/home.js"></script>
+  <script>
+    function markEpilogueDone() {
+      localStorage.setItem('epilogue-done', 'completed');
+    }
+  </script>
+
 </body>
-
 </html>

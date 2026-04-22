@@ -1,66 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solve Chapter 2</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../Css/home.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solve Chapter 2 — After Dark</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../Css/home.css" />
 </head>
-
 <body>
-
+ <!-- Navbar-->
     <nav class="navbar navbar-dark fixed-top" id="navbar">
         <div class="container">
+
+
             <a class="navbar-brand fw-bold" href="../index.html">After Dark</a>
+
+            <!-- Desktop menu links (hidden on mobile) -->
             <ul class="nav d-none d-lg-flex">
                 <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#chapters">Chapters</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#howtoplay">Instructions</a></li>
             </ul>
+
+            <!-- Hamburger button (mobile only) -->
             <button class="hamburger d-lg-none" id="hamburger">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
+
         </div>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="menu-close" id="menuClose">&times;</button>
         <ul>
             <li><a href="../index.html" class="menu-link">Home</a></li>
+            <li><a href="../index.html#chapters" class="menu-link">Chapters</a></li>
+            <li><a href="../index.html#howtoplay" class="menu-link">Instructions</a></li>
         </ul>
     </div>
-
-    <!-- ↓ data-chapter="2" tells puzzle.js which chapter this is -->
-    <section class="hero-section text-center" data-chapter="2">
-        <div class="container d-flex flex-column align-items-center">
-
-            <h3 class="text-gold mb-4">🧩 Solve the Chapter</h3>
-            <p class="hero-desc">Select the correct 3 fragments to reconstruct the story.</p>
-
-            <div class="puzzle-wrapper mt-4">
-                <div class="puzzle-grid" id="grid"></div>
-                <div class="puzzle-right">
-                    <div class="puzzle-slots">
-                        <div class="puzzle-slot"></div>
-                        <div class="puzzle-slot"></div>
-                        <div class="puzzle-slot"></div>
-                    </div>
-                    <button class="puzzle-btn" onclick="checkAnswer()">Check</button>
-                </div>
-            </div>
-
+    
+  <section class="hero-section text-center" data-chapter="2">
+    <div class="container d-flex flex-column align-items-center">
+      <p class="small-label">Chapter 2</p>
+      <h3 class="text-gold mb-2">Solve: A Cross</h3>
+      <p class="hero-desc">Select the 3 correct fragments in the right order to reconstruct the chapter.</p>
+      <div class="puzzle-error mb-3" id="puzzleError"></div>
+      <div class="puzzle-wrapper mt-2">
+        <div class="puzzle-grid" id="grid"></div>
+        <div class="puzzle-right">
+          <p class="small-label" style="margin-bottom:6px;">Your Order</p>
+          <div class="puzzle-slots">
+            <div class="puzzle-slot"></div>
+            <div class="puzzle-slot"></div>
+            <div class="puzzle-slot"></div>
+          </div>
+          <button class="reward-btn-home mt-3" onclick="checkAnswer()">Check</button>
+          <button class="puzzle-reset-btn" onclick="resetSelection()">↺ Reset</button>
         </div>
-    </section>
-
-    <footer class="text-center py-3 bg-dark site-footer">
-        <p class="text-warning d-block mb-1 footer-title">After Dark</p>
-        <p class="small mb-1">Round Table After Dark · Inspired by Ravensburger Echoes</p>
-        <p class="small mb-0">&copy; 2026 After Dark Team. All rights reserved.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../Script/home.js"></script>
-    <script src="../Script/puzzle.js"></script>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer text-center">
+    <p class="footer-title">After Dark</p>
+    <p class="small mb-1">Round Table After Dark · Inspired by Ravensburger Echoes</p>
+    <p class="small mb-0">&copy; 2026 After Dark Team. All rights reserved.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../Script/home.js"></script>
+  <script src="../Script/puzzle.js"></script>
 </body>
-
 </html>

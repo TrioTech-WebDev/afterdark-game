@@ -67,11 +67,47 @@
 
             <div class="mb-4"></div>
 
-            <!-- Audio Player -->
-            <div class="audio-box mx-auto">
-                <p class="audio-label text-warning">🎧 Candles Audio</p>
-                <audio id="mainAudio" controls src="../Assets/audio/candles.mp3"></audio>
-                <a id="backBtn" class="btn btn-warning mt-4">← Back to Chapter</a>
+             <!-- Audio Player -->
+      <div class="ad-audio-player mx-auto">
+        <!-- LABEL -->
+        <div class="audio-label">
+          <span class="music-icon">♫</span>
+          <span>Candles Audio</span>
+        </div>
+
+        <!-- CONTROLS ROW -->
+        <div class="audio-controls">
+
+          <!-- PLAY / PAUSE -->
+          <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+
+          <!-- STOP -->
+          <button class="audio-btn" onclick="stopAudio()">⏹</button>
+
+          <!-- REPLAY -->
+          <button class="audio-btn" onclick="replayAudio()">↻</button>
+
+          <!-- PROGRESS -->
+          <div class="audio-progress-wrap">
+
+            <div class="audio-progress-bg" id="progressBg" onclick="seekAudio(event)">
+              <div class="audio-progress-bar" id="progressBar"></div>
+            </div>
+
+            <span class="audio-time" id="audioTime">0:00</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <audio id="mainAudio" src="../Assets/audio/usb.mp3"></audio>
+    
+                <a id="backBtn" class="reward-btn-home">
+                    Back to Chapter
+                </a>
             </div>
 
         </div>

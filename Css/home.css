@@ -1,189 +1,150 @@
-/* Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap");
+/* ============================================================
+   home.css — After Dark · Shared Stylesheet
+   ============================================================ */
 
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap");
+
+/* ── Variables ─────────────────────────────────────────────── */
 :root {
-  --gold: rgb(233, 177, 9);
-  --dark-bg: #0d0d18;
+  --gold:        rgb(233, 177, 9);
+  --gold-dim:    rgba(233,177,9,0.25);
+  --gold-glow:   rgba(233,177,9,0.55);
+  --dark-bg:     #0d0d18;
+  --card-bg:     rgba(201,168,76,0.05);
+  --card-border: rgba(201,168,76,0.22);
+  --text-main:   #e5ddd0;
+  --text-muted:  #7a7060;
+  --font-title:  'Cinzel', serif;
+  --font-body:   'Lato', sans-serif;
+  --radius:      12px;
+  --transition:  0.22s ease;
 }
+
+/* ── Reset & Base ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Lato', sans-serif;
-  background-color: var(--dark-bg);
-  color: #e5ddd0;
+  font-family: var(--font-body);
+  background: var(--dark-bg);
+  color: var(--text-main);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Background video */
+/* ── Background Video ──────────────────────────────────────── */
 .video-wrap {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
+  position: fixed; inset: 0;
+  z-index: 0; overflow: hidden;
 }
-
 .video-wrap video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.25;
+  width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.25;
 }
-
 .video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: absolute; inset: 0;
   background: rgba(10, 10, 20, 0);
 }
 
-/* Navbar */
+/* ── Navbar ────────────────────────────────────────────────── */
 #navbar {
   background: transparent;
-  transition: background 0.3s;
-  z-index: 200;
-  font-family: 'Cinzel', serif;
+  transition: background var(--transition), backdrop-filter var(--transition);
+  z-index: 500;
+  font-family: var(--font-title);
+  padding: 14px 0;
 }
-
 #navbar.scrolled {
-  background: rgba(10, 10, 20, 0.95);
+  background: rgba(8,8,16,0.96);
+  backdrop-filter: blur(10px);
 }
-
 #navbar .navbar-brand {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-title);
   color: var(--gold) !important;
-  font-size: 1.2rem;
-  letter-spacing: 0.08em;
+  font-size: 1.15rem;
+  letter-spacing: 0.1em;
 }
-
-/* Desktop nav links */
 #navbar .nav-link {
-  color: #e5ddd0 !important;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  color: var(--text-main) !important;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  transition: color var(--transition);
 }
+#navbar .nav-link:hover { color: var(--gold) !important; }
 
-#navbar .nav-link:hover {
-  color: var(--gold) !important;
-}
-
-/* Hamburger button (mobile) */
+/* ── Hamburger ─────────────────────────────────────────────── */
 .hamburger {
   background: none;
-  border: 1px solid rgba(201, 168, 76, 0.5);
-  border-radius: 5px;
-  padding: 5px 10px;
+  border: 1px solid rgba(233,177,9,0.35);
+  border-radius: 6px;
+  padding: 6px 10px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-
 .hamburger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--gold);
-  border-radius: 2px;
+  display: block; width: 22px; height: 2px;
+  background: var(--gold); border-radius: 2px;
 }
 
-/* Mobile menu */
+/* ── Mobile Menu ───────────────────────────────────────────── */
 .mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10, 10, 20, 0.97);
-  z-index: 300;
-  display: flex;
+  position: fixed; inset: 0;
+  background: rgba(8,8,16,0.97);
+  z-index: 600;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  display: none;
 }
-
-.mobile-menu.open {
-  display: flex;
-}
-
+.mobile-menu.open { display: flex; }
 .menu-close {
-  position: absolute;
-  top: 18px;
-  right: 22px;
-  background: none;
-  border: none;
-  color: var(--gold);
-  font-size: 2.2rem;
-  cursor: pointer;
-  line-height: 1;
+  position: absolute; top: 18px; right: 22px;
+  background: none; border: none;
+  color: var(--gold); font-size: 2.2rem;
+  cursor: pointer; line-height: 1;
 }
-
-.mobile-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
-.mobile-menu ul li {
-  margin-top: 2.15rem;
-}
-
+.mobile-menu ul { list-style: none; padding: 0; text-align: center; }
+.mobile-menu ul li { margin-top: 2rem; }
 .menu-link {
-  font-family: 'Cinzel', serif;
-  color: #e5ddd0;
-  text-decoration: none;
-  font-size: 16px;
+  font-family: var(--font-title);
+  color: var(--text-main); text-decoration: none;
+  font-size: 1.1rem; letter-spacing: 0.08em;
+  transition: color var(--transition);
 }
+.menu-link:hover { color: var(--gold); }
 
-.menu-link:hover {
-  color: var(--gold);
-}
-
-/* Hero section */
+/* ── Sections ──────────────────────────────────────────────── */
 .hero-section {
-  position: relative;
-  z-index: 1;
+  position: relative; z-index: 1;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   padding: 120px 20px 60px;
 }
+.page-section {
+  position: relative; z-index: 1;
+  padding: 70px 0;
+}
+.bg-section-dark { background: rgba(5,5,14,0.88); }
 
+/* ── Typography ────────────────────────────────────────────── */
 .small-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
+  font-family: var(--font-title);
+  font-size: 0.68rem; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--gold);
   margin-bottom: 8px;
 }
-
 .hero-title {
-  font-family: 'Cinzel', serif;
+  font-family: var(--font-title);
   font-size: clamp(1.8rem, 6vw, 3.2rem);
-  color: #ffffff;
-  margin-bottom: 16px;
+  color: #fff; margin-bottom: 16px;
 }
-
-.text-gold {
-  color: var(--gold);
-}
-
-/* Any h3.text-gold used as a section title */
-h3.text-gold,
-.section-heading {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.2rem, 4vw, 1.6rem);
+.text-gold { color: var(--gold); }
+h3.text-gold, .section-heading {
+  font-family: var(--font-title);
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
   letter-spacing: 0.06em;
-  color: var(--gold);
 }
-
 .hero-desc {
   color: #9a9080;
   font-size: 0.95rem;
@@ -193,105 +154,228 @@ h3.text-gold,
   text-align: justify;
 }
 
-/* Audio player box */
-.audio-box {
-  background: rgba(201, 168, 76, 0.07);
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  border-radius: 10px;
-  padding: 16px 20px;
-  max-width: 460px;
-  width: 100%;
+/* ── Divider ───────────────────────────────────────────────── */
+.gold-divider {
+  width: 50px; height: 2px;
+  background: var(--gold);
+  border: none; margin: 12px auto 2rem;
 }
 
-.audio-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
+/* ── Chapter Cards (index) ─────────────────────────────────── */
+.card-link { text-decoration: none; }
+.chapter-card {
+  position: relative; overflow: hidden;
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  border-radius: var(--radius);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
-
-/* Sections */
-.page-section {
-  position: relative;
-  z-index: 1;
-  padding: 60px 0;
-  background: rgba(5, 5, 14, 0.82);
-}
-
-.bg-section-dark {
-  background: rgba(5, 5, 14, 0.90);
-}
-
-/* ─────────────────────────────────────────
-   CHAPTER CARDS (index.html)
-   Constrained so they never fill the whole viewport
-   ───────────────────────────────────────── */
-.card-link .card {
-  max-width: 320px;
-  margin: 0 auto;
-  transition: transform 0.3s, border-color 0.3s;
-}
-
-.card-link .card .card-img-top {
-  height:400px;
-  object-fit: cover;
-}
-
-.card-link .card:hover {
-  transform: translateY(-5px);
+.chapter-card:hover {
+  transform: translateY(-6px);
   border-color: var(--gold) !important;
+  box-shadow: 0 0 22px rgba(233,177,9,0.25);
 }
-
-/* How to play */
-.step-box {
+.chapter-img-wrap {
+  width: 100%;
+  background: #0a0a12;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background: rgba(201, 168, 76, 0.04);
-  border: 1px solid rgba(255, 187, 0, 0.15);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 12px;
-  color: #e5ddd0;
-  text-align: center;
+  padding: 10px;
+  min-height: 200px;
+}
+.chapter-img-wrap img {
+  max-width: 100%;
+  max-height: 240px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.chapter-card .card-body { padding: 14px 16px; }
+.chapter-card .card-title {
+  font-family: var(--font-title);
+  font-size: 0.95rem; letter-spacing: 0.06em;
+  color: #fff; margin-bottom: 6px;
 }
 
-.step-box p {
-  font-size: 16px;
+/* Completed overlay */
+.chapter-done-badge {
+  position: absolute; top: 10px; right: 10px;
+  background: rgba(0,0,0,0.78);
+  color: rgb(233, 177, 9); font-family: var(--font-body);
+  font-size: 0.72rem; font-weight: 700;
+  padding: 4px 10px; border-radius: 20px;
+  border: 1px solid rgba(233, 177, 9, 0.35);
+  pointer-events: none; z-index: 10;
+}
+.chapter-completed-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; z-index: 5;
+  border-radius: inherit;
+}
+.overlay-lock { font-size: 2rem; }
+.overlay-text {
+  color: #888; font-size: 0.8rem;
+  font-weight: 600; letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
-/* Footer */
-.site-footer {
-  position: relative;
-  z-index: 1;
-  background: rgb(5, 5, 14);
-  border-top: 1px solid rgba(201, 168, 76, 0.12);
-  color: rgba(233, 177, 9, 0.589);
-  
+/* ── Epilogue / CTA Buttons ────────────────────────────────── */
+.btn-epilogue {
+  display: inline-block;
+  font-family: var(--font-title);
+  font-size: 0.95rem; letter-spacing: 0.1em;
+  color: #000 !important; background: var(--gold);
+  border-radius: 10px; padding: 13px 34px;
+  text-decoration: none; font-weight: 700;
+  transition: transform var(--transition), box-shadow var(--transition);
+  animation: pulseGold 2.2s infinite;
+}
+.btn-epilogue:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 28px var(--gold-glow);
+}
+@keyframes pulseGold {
+  0%,100% { box-shadow: 0 0 14px rgba(233,177,9,0.35); }
+  50%      { box-shadow: 0 0 34px rgba(233,177,9,0.75); }
 }
 
-.footer-title {
-  color: #0dff00bf;
-  font-family: 'Cinzel', serif;
+/* ── Reset Button ──────────────────────────────────────────── */
+.btn-reset {
+  background: none;
+  border: 1px solid rgba(201,168,76,0.28);
+  color: rgba(201,168,76,0.55);
+  font-family: var(--font-body);
+  font-size: 0.8rem; letter-spacing: 0.08em;
+  padding: 8px 22px; border-radius: 8px;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.btn-reset:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ── How to Play Steps ─────────────────────────────────────── */
+.step-box {
+  background: var(--card-bg);
+  border: 1px solid rgba(255,187,0,0.13);
+  border-radius: 8px; padding: 18px 20px;
+  margin-bottom: 12px; color: var(--text-main);
+  text-align: left;
+}
+.step-box strong {
+  font-family: var(--font-title);
+  font-size: 0.85rem; letter-spacing: 0.04em;
+  color: var(--gold);
+}
+.step-box small { color: var(--text-muted); line-height: 1.7; }
+
+/* ── Creators Grid ─────────────────────────────────────────── */
+.creators-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 16px; max-width: 680px;
+  margin: 0 auto;
+}
+.creator-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px 16px; text-align: center;
+  transition: transform var(--transition), border-color var(--transition);
+}
+.creator-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 0 16px rgba(233,177,9,0.18);
+}
+.creator-name {
+  font-family: var(--font-title);
+  font-size: 0.95rem; color: #fff;
+  margin-bottom: 6px;
+}
+.creator-role {
+  font-size: 0.75rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold); margin: 0;
 }
 
-/* Fragment grid */
+/* ── Audio Player ──────────────────────────────────────────── */
+.ad-audio-player {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  max-width: 500px; width: 100%;
+  backdrop-filter: blur(2px);
+}
+.audio-label {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-title);
+  font-size: 0.7rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.music-icon { font-size: 1.3rem; }
+.audio-controls {
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.audio-btn {
+  background: var(--gold); border: none;
+  border-radius: 50%; width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  color: #000; font-size: 0.85rem;
+  cursor: pointer; flex-shrink: 0;
+  transition: background var(--transition), transform var(--transition);
+  font-family: var(--font-body);
+}
+.audio-btn:hover { background: #c99a08; transform: scale(1.1); }
+.audio-progress-wrap {
+  flex: 1; display: flex; align-items: center; gap: 0.5rem;
+}
+.audio-progress-bg {
+  flex: 1; height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px; overflow: hidden; cursor: pointer;
+}
+.audio-progress-bar {
+  height: 100%; width: 0%;
+  background: var(--gold); border-radius: 4px;
+  transition: width 0.1s linear;
+}
+.audio-time {
+  font-size: 0.72rem; color: var(--text-muted);
+  min-width: 36px; text-align: right;
+  font-family: var(--font-body);
+}
+.audio-vol {
+  display: flex; align-items: center; gap: 0.35rem;
+  color: var(--gold); font-size: 0.9rem;
+}
+.vol-slider {
+  -webkit-appearance: none; appearance: none;
+  width: 56px; height: 3px; border-radius: 3px;
+  background: rgba(255,255,255,0.14); outline: none; cursor: pointer;
+}
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 11px; height: 11px;
+  border-radius: 50%; background: var(--gold); cursor: pointer;
+}
+.vol-slider::-moz-range-thumb {
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--gold); border: none; cursor: pointer;
+}
+
+/* ── Fragment Cards (chapter pages) ───────────────────────── */
 .fragment-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(3,1fr);
+  gap: 14px;
 }
-
 .fragment-item {
-  text-decoration: none;
-  color: #e5ddd0;
-  font-size: 12px;
+  text-decoration: none; color: var(--text-main); font-size: 11px;
 }
-
 .fragment-item img {
   width: 100%;
   height: 90px;
@@ -300,397 +384,244 @@ h3.text-gold,
   border: 1px solid rgba(201, 168, 76, 0.3);
   transition: 0.3s;
 }
-
 .fragment-item img:hover {
-  transform: scale(1.05);
-  border-color: var(--gold);
+  transform: scale(1.06); border-color: var(--gold);
+}
+.fragment-item p { margin-top: 6px; }
+
+/* Fragment done state */
+.fragment-card { position: relative; }
+.fragment-card.fragment-completed {
+  opacity: 0.36; filter: grayscale(80%) brightness(0.5); cursor: default;
+}
+.fragment-done-stamp {
+  position: absolute; top: 6px; right: 6px;
+  font-size: 1rem; z-index: 10; pointer-events: none;
 }
 
-.fragment-item p {
-  margin-top: 6px;
-}
-
-/* =============================
-   PUZZLE WRAPPER
-============================= */
+/* ── PUZZLE PAGE ───────────────────────────────────────────── */
 .puzzle-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 50px;
-  flex-wrap: wrap;
-  padding: 20px;
+  display: flex; justify-content: center;
+  align-items: flex-start; gap: 40px;
+  flex-wrap: wrap; padding: 10px;
 }
-
-/* =============================
-   GRID (LEFT / TOP)
-============================= */
 .puzzle-grid {
   display: grid;
   grid-template-columns: repeat(3, 110px);
-  gap: 14px;
-}
-
-/* =============================
-   TILE
-============================= */
-.puzzle-tile {
-  width: 110px;
-  height: 110px;
-  border-radius: 12px;
-  background: rgba(201, 168, 76, 0.08);
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.25s ease;
-  overflow: hidden;
-}
-
-.puzzle-tile img {
-  width: 75%;
-  height: 75%;
-  object-fit: contain;
-}
-
-.puzzle-tile:hover {
-  transform: scale(1.05);
-  border-color: #e9b109;
-  box-shadow: 0 0 12px rgba(233, 177, 9, 0.35);
-}
-
-.puzzle-tile.active {
-  background: rgba(233, 177, 9, 0.18);
-  border-color: #e9b109;
-  transform: scale(1.04);
-}
-
-/* =============================
-   RIGHT SIDE (ANSWER AREA)
-============================= */
-.puzzle-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  min-width: 130px;
-}
-
-/* =============================
-   SLOTS
-============================= */
-.puzzle-slots {
-  display: flex;
-  flex-direction: column;
   gap: 12px;
 }
-
-.puzzle-slot {
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
-  border: 2px dashed rgba(201, 168, 76, 0.45);
-  background: rgba(255, 255, 255, 0.03);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.puzzle-tile {
+  width: 110px; height: 110px;
+  border-radius: var(--radius);
+  background: transparent;
+  border: 2px solid var(--card-border);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0; cursor: pointer; overflow: hidden;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+  padding: 0;
 }
-
-.puzzle-slot img {
-  width: 80%;
-  height: 80%;
-  object-fit: contain;
+.puzzle-tile img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
 }
-
-/* =============================
-   PUZZLE BUTTON
-============================= */
-.puzzle-btn {
-  padding: 10px 24px;
-  border: none;
-  border-radius: 8px;
-  background: #e9b109;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.puzzle-btn:hover {
+.puzzle-tile:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(233, 177, 9, 0.5);
+  border-color: var(--gold);
+  box-shadow: 0 0 12px var(--gold-dim);
+}
+.puzzle-tile.active {
+  background: transparent;
+  border-color: var(--gold);
+  border-width: 3px;
+  transform: scale(1.04);
+  box-shadow: 0 0 16px var(--gold-dim);
 }
 .puzzle-tile-done {
-  opacity: 0.25;
-  filter: grayscale(100%) brightness(0.4);
-  cursor: not-allowed !important;
-  pointer-events: none;
+  opacity: 0.22; filter: grayscale(100%) brightness(0.35);
+  cursor: not-allowed !important; pointer-events: none;
   position: relative;
 }
-
 .puzzle-tile-done::after {
-  content: "🔒";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.4rem;
-  opacity: 0.7;
+ position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 1.3rem; opacity: 0.65;
 }
-/*  */
-/*  */
-/*  */
-/* ── Chapter card must be position:relative for overlays ── */
-.chapter-card {
-  position: relative;
+/* Ensure puzzle-error is visible inside flex column */
+.puzzle-error {
+  width: 100%;
+  max-width: 360px;
+}
+/* Puzzle right panel */
+.puzzle-right {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 14px; min-width: 120px;
+}
+.puzzle-slots { display: flex; flex-direction: column; gap: 10px; }
+.puzzle-slot {
+  width: 100px; height: 100px;
+  border-radius: var(--radius);
+  border: 2px dashed rgba(201,168,76,0.4);
+  background: rgba(255,255,255,0.02);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; transition: border-color var(--transition);
+}
+.puzzle-slot img { width: 80%; height: 80%; object-fit: contain; }
+.puzzle-slot.filled { border-style: solid; border-color: rgba(233,177,9,0.5); }
+
+/* Puzzle check btn */
+.puzzle-btn {
+  padding: 11px 28px; border: none;
+  border-radius: 8px; background: var(--gold);
+  color: #000; font-weight: 700; cursor: pointer;
+  font-family: var(--font-title);
+  font-size: 0.88rem; letter-spacing: 0.06em;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.puzzle-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 16px var(--gold-glow);
+}
+
+/* Reset small btn */
+.puzzle-reset-btn {
+  background: none; border: 1px solid rgba(201,168,76,0.25);
+  color: rgba(201,168,76,0.5);
+  font-family: var(--font-body); font-size: 0.78rem;
+  letter-spacing: 0.06em; padding: 7px 18px;
+  border-radius: 7px; cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+.puzzle-reset-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+/* Inline error message */
+.puzzle-error {
+  color: #ff5252; font-size: 0.82rem;
+  font-family: var(--font-body); letter-spacing: 0.04em;
+  background: rgba(255,82,82,0.1);
+  border: 1px solid rgba(255,82,82,0.25);
+  border-radius: 7px; padding: 8px 14px;
+  text-align: center; min-height: 36px;
+  display: none;
+}
+.puzzle-error.visible { display: block; }
+
+/* ── CHAPTER ORDER PAGE ────────────────────────────────────── */
+.order-pool { display: flex; flex-direction: column; gap: 14px; }
+.order-card {
+  width: 110px; height: 110px;
+  border-radius: var(--radius);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px; cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition);
   overflow: hidden;
+  padding: 8px;
 }
-
-/* ── ✅ Green completed badge (top-right corner of card) ── */
-.chapter-done-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0,0,0,0.75);
-  color: #4caf50;
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 4px 10px;
-  border-radius: 20px;
-  border: 1px solid #4caf50;
-  z-index: 10;
-  pointer-events: none;
+/* Override puzzle-tile img fill for order-cards — use contain + label */
+.order-card img { width: 65% !important; height: 65% !important; object-fit: contain !important; }
+.order-card-label {
+  font-family: var(--font-title); font-size: 0.58rem;
+  color: var(--gold); text-align: center; letter-spacing: 0.04em;
 }
-
-/* ── 🔒 Dark overlay on completed chapter card (index page) ── */
-.chapter-completed-overlay {
-  position: absolute;
-  inset: 0;                          /* covers entire card */
-  background: rgba(0, 0, 0, 0.68);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  z-index: 5;
-  border-radius: inherit;
+.order-card:hover { border-color: var(--gold); transform: scale(1.04); }
+.order-card.dragging { opacity: 0.3; cursor: grabbing; }
+.order-card.placed {
+  opacity: 0.22; filter: grayscale(80%); pointer-events: none;
 }
-
-.overlay-lock {
-  font-size: 2.2rem;
-  filter: grayscale(0.3);
+.order-slots { display: flex; flex-direction: column; gap: 12px; }
+.order-slot-row { display: flex; align-items: center; gap: 10px; }
+.order-slot-number {
+  font-family: var(--font-title); font-size: 1rem;
+  color: var(--gold); width: 20px; text-align: center; flex-shrink: 0;
 }
-
-.overlay-text {
-  color: #aaa;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+.order-slot {
+  width: 100px; height: 100px;
+  border-radius: var(--radius);
+  border: 2px dashed rgba(201,168,76,0.38);
+  background: rgba(255,255,255,0.02);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; position: relative;
+  transition: border-color var(--transition), background var(--transition);
 }
-
-/* ── Fragment card dark state (chapter pages) ────────────── */
-.fragment-card.fragment-completed {
-  opacity: 0.38;
-  filter: grayscale(80%) brightness(0.5);
-  cursor: default;
-}
-
-/* ── ✅ Small stamp on completed fragment cards ──────────── */
-.fragment-done-stamp {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  font-size: 1.1rem;
-  z-index: 10;
-  pointer-events: none;
-}
-
-/* ── Epilogue button (glowing gold) ─────────────────────── */
-.btn-epilogue {
-  display: inline-block;
-  background: linear-gradient(135deg, #e9b109, #c9880a);
-  color: #000;
-  font-weight: bold;
-  font-size: 1.1rem;
-  padding: 14px 36px;
-  border-radius: 12px;
-  text-decoration: none;
-  animation: pulseGlow 2s infinite;
-  transition: transform 0.2s;
-}
-.btn-epilogue:hover {
-  transform: scale(1.04);
-  color: #000;
-}
-@keyframes pulseGlow {
-  0%,100% { box-shadow: 0 0 20px rgba(233,177,9,0.4); }
-  50%      { box-shadow: 0 0 42px rgba(233,177,9,0.85); }
-}
-
-/* ── Reset button ────────────────────────────────────────── */
-.btn-reset {
-  background: transparent;
-  color: #666;
-  border: 1px solid #333;
-  padding: 8px 20px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s;
-}
-.btn-reset:hover {
-  color: #e9b109;
-  border-color: #e9b109;
-}
-
-/* ─────────────────────────────────────────
-   CREATORS SECTION
-   ───────────────────────────────────────── */
-.creators-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.creator-card {
-  background: rgba(201, 168, 76, 0.06);
-  border: 1px solid rgba(201, 168, 76, 0.25);
-  border-radius: 12px;
-  padding: 24px 16px;
-  text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.creator-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--gold);
-  box-shadow: 0 0 16px rgba(233, 177, 9, 0.2);
-}
-
-.creator-card .creator-name {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  color: #ffffff;
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-
-.creator-card .creator-role {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin: 0;
-}
-
-/* ─────────────────────────────────────────
-   PODCAST-LOGO PAGE — chapter card styling
-   ───────────────────────────────────────── */
-#chapter-hero .card {
-  background: rgba(201, 168, 76, 0.06) !important;
-  border: 1px solid rgba(201, 168, 76, 0.25) !important;
-  border-radius: 14px;
-  overflow: hidden;
-  max-width: 300px;
-  margin: 0 auto;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-#chapter-hero .card:hover {
-  transform: translateY(-5px);
+.order-slot.drag-over {
   border-color: var(--gold) !important;
-  box-shadow: 0 0 18px rgba(233, 177, 9, 0.25);
+  background: rgba(233,177,9,0.1) !important;
 }
-
-#chapter-hero .card-img-top {
-  height: 200px;
-  object-fit: cover;
+.order-slot.active { border-style: solid; border-color: rgba(233,177,9,0.5); }
+.order-slot img { width: 75%; height: 75%; object-fit: contain; }
+.order-slot-remove {
+  position: absolute; top: 4px; right: 4px;
+  background: none; border: none; color: #555;
+  font-size: 0.8rem; cursor: pointer; line-height: 1; padding: 0;
 }
+.order-slot-remove:hover { color: var(--gold); }
 
-#chapter-hero .card-title {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
-  color: #ffffff;
-  margin: 0;
+/* Inline error message */
+.puzzle-error {
+  color: #ff5252; font-size: 0.82rem;
+  font-family: var(--font-body); letter-spacing: 0.04em;
+  background: rgba(255,82,82,0.1);
+  border: 1px solid rgba(255,82,82,0.25);
+  border-radius: 7px; padding: 8px 14px;
+  text-align: center; min-height: 36px;
+  width: 100%;           /* ← added */
+  max-width: 360px;      /* ← added */
+  display: none;
 }
-
-/* =============================
-   REWARD PAGE
-============================= */
+.puzzle-error.visible { display: block; }
+/* ── Reward / Full Audio Page ──────────────────────────────── */
 .reward-section {
-  position: relative;
-  z-index: 1;
+  position: relative; z-index: 1;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 20px 60px;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 100px 20px 60px;
 }
-
 .reward-card {
-  background: rgba(201, 168, 76, 0.06);
-  border: 1px solid rgba(201, 168, 76, 0.25);
-  border-radius: 16px;
-  padding: 40px 32px;
-  max-width: 520px;
-  width: 100%;
-  text-align: center;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px; padding: 40px 32px;
+  max-width: 520px; width: 100%; text-align: center;
 }
-
 .reward-badge {
-  font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
+  font-family: var(--font-title);
+  font-size: 0.68rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
 }
-
 .reward-title {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.4rem, 5vw, 2rem);
-  color: #ffffff;
-  margin-bottom: 8px;
+  font-family: var(--font-title);
+  font-size: clamp(1.3rem, 5vw, 1.9rem);
+  color: #fff; margin-bottom: 8px;
 }
-
 .reward-desc {
-  color: #9a9080;
-  font-size: 0.9rem;
-  line-height: 1.8;
-  margin-bottom: 28px;
+  color: var(--text-muted); font-size: 0.9rem;
+  line-height: 1.8; margin-bottom: 20px;
 }
-
-.reward-audio-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
+.reward-chapter-img {
+  width: 110px; height: 110px;
+  object-fit: contain; margin-bottom: 20px; opacity: 0.9;
 }
-
-.reward-audio-box {
-  background: rgba(201, 168, 76, 0.07);
-  border: 1px solid rgba(201, 168, 76, 0.2);
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 24px;
+.reward-btn {
+  display: inline-block;
+  font-family: var(--font-title);
+  font-size: 0.82rem; letter-spacing: 0.1em;
+  color: #000 !important; background: var(--gold);
+  border: none; border-radius: 8px;
+  padding: 11px 28px; text-decoration: none;
+  font-weight: 700; cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  margin-top: 16px;
 }
-
-.reward-audio-box audio {
-  width: 100%;
+.reward-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px var(--gold-glow);
 }
-
 .reward-btn-home {
   display: inline-block;
-  font-family: 'Lato', serif;
+  font-family: var(--font-title);
   font-size: 0.8rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -701,7 +632,9 @@ h3.text-gold,
   padding: 11px 28px;
   text-decoration: none;
   transition: 0.25s ease;
-  font-weight: 700;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .reward-btn-home:hover {
@@ -710,149 +643,154 @@ h3.text-gold,
   color: #000;
 }
 
-.reward-chapter-img {
-  width: 110px;
-  height: 110px;
-  object-fit: contain;
-  margin-bottom: 20px;
-  opacity: 0.92;
+/* ── Footer ────────────────────────────────────────────────── */
+.site-footer {
+  position: relative; z-index: 1;
+  background: rgb(5,5,14);
+  border-top: 1px solid rgba(201,168,76,0.1);
+  color: rgba(233,177,9,0.5);
+  padding: 18px 0;
 }
-/* Solve button spacing fix */
-.solve-section {
-  margin-top: 30px;     /* reduced top space */
-  margin-bottom: 60px;  /* space before footer */
+.footer-title {
+  font-family: var(--font-title);
+  color: var(--gold); font-size: 0.90rem; 
 }
-/* =====================================================
-   RESPONSIVE — MOBILE BREAKPOINTS
-   ===================================================== */
 
-/* Tablet and below */
+/* ── Toasts / Mini Popups ──────────────────────────────────── */
+.ad-toast {
+  position: fixed; bottom: 30px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(10,10,22,0.96);
+  border: 1px solid var(--gold);
+  border-radius: 12px; padding: 16px 28px;
+  text-align: center; z-index: 9000;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  max-width: 320px; width: 90%;
+  box-shadow: 0 0 30px rgba(233,177,9,0.35);
+}
+.ad-toast.show {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.ad-toast-title {
+  font-family: var(--font-title);
+  font-size: 0.9rem; color: var(--gold);
+  margin-bottom: 6px; letter-spacing: 0.06em;
+}
+.ad-toast-msg {
+  font-size: 0.8rem; color: #bbb;
+  line-height: 1.5; margin-bottom: 12px;
+}
+.ad-toast-btn {
+  display: inline-block;
+  font-family: var(--font-title);
+  font-size: 0.75rem; letter-spacing: 0.08em;
+  color: #000; background: var(--gold);
+  border: none; border-radius: 7px;
+  padding: 9px 22px; font-weight: 700;
+  cursor: pointer; text-decoration: none;
+  transition: transform var(--transition);
+}
+.ad-toast-btn:hover { transform: scale(1.06); color: #000; }
+.ad-toast-dismiss {
+  display: block; margin-top: 8px;
+  background: none; border: none;
+  color: #555; font-size: 0.72rem;
+  cursor: pointer; font-family: var(--font-body);
+  transition: color var(--transition);
+}
+.ad-toast-dismiss:hover { color: var(--gold); }
+
+/* ── Responsive ────────────────────────────────────────────── */
+
+/* Tablet */
 @media (max-width: 768px) {
-  #chapter-hero {
-    padding: 90px 16px 40px !important;
-  }
+  .reward-card { padding: 28px 18px; }
+  .reward-chapter-img { width: 80px; height: 80px; }
 }
 
-/* Small phones */
+/* Large phones (iPhone 16, Samsung S-series etc ~430px wide) */
 @media (max-width: 600px) {
-  .hero-section {
-    padding: 80px 16px 40px !important;
-    min-height: unset;
-  }
+  .hero-section { padding: 80px 16px 40px !important; min-height: unset; }
+  .hero-desc { margin-bottom: 16px !important; }
 
-  .hero-desc {
-    margin-bottom: 12px !important;
-  }
-
-  h3.text-gold {
-    margin-bottom: 8px !important;
-  }
-
-  /* Puzzle */
+  /* ── Puzzle grid: 3 square tiles, fills screen width ── */
   .puzzle-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column; align-items: center; gap: 20px;
   }
-
   .puzzle-grid {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 100%;
-    max-width: 320px;
-    gap: 10px;
+    width: 100%; max-width: 320px; gap: 8px;
   }
-
+  /* Square tiles via aspect-ratio */
   .puzzle-tile {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
+    width: 100%; height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 0;
     position: relative;
-    margin-top: 0;
   }
-
   .puzzle-tile img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center -30%;
+  display: block;
+  transform: scale(1.6);
+}
+
+  /* order-card: keep label visible, use contain */
+  .order-card .puzzle-tile img,
+  .order-card img {
+    width: 65%; height: 65%;
+    object-fit: contain;
+  }
+  .order-card-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.03em;
   }
 
+  /* ── Answer slots: row of 3 below grid ── */
   .puzzle-right {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 320px;
-    gap: 10px;
+    width: 100%; max-width: 320px; gap: 10px;
   }
-
   .puzzle-slots {
-    flex-direction: row;
-    justify-content: center;
-    gap: 12px;
+    flex-direction: row; justify-content: center; gap: 8px;
   }
-
   .puzzle-slot {
-    width: 90px;
-    height: 90px;
+    width: 88px; height: 88px;
   }
+  /* order-slot inherits .puzzle-slot sizing */
+  .order-slot { width: 88px; height: 88px; }
 
-  /* Reward page */
-  .reward-card {
-    padding: 28px 18px;
-  }
-
-  .reward-chapter-img {
-    width: 80px;
-    height: 80px;
-  }
+  .creators-grid { grid-template-columns: 1fr; max-width: 300px; }
 }
 
-/* Extra small phones */
+/* Standard phones: iPhone SE, smaller Androids ~390px */
 @media (max-width: 480px) {
+  .hero-title { font-size: clamp(1.3rem, 8vw, 2.2rem); }
 
-  .hero-title {
-    font-size: clamp(1.3rem, 8vw, 2.4rem);
-    letter-spacing: 0.06em;
-  }
-  /* Chapter cards on index */
-  .card-link .card {
-    max-width: 260px;
-  }
+  .puzzle-grid { max-width: 300px; gap: 7px; }
+  .puzzle-slot { width: 82px; height: 82px; }
+  .order-slot  { width: 82px; height: 82px; }
 
-  .card-link .card .card-img-top {
-    height: 160px;
-  }
-
-  /* Creators: single column */
-  .creators-grid {
-    grid-template-columns: 1fr;
-    max-width: 320px;
-  }
-
-  /* Audio box */
-  .audio-box {
-    padding: 14px;
-  }
-
-  .audio-box audio {
-    width: 100%;
-  }
-
-  /* Solve button */
-  .text-center .btn-warning {
-    width: 100%;
-    max-width: 300px;
-  }
+  .audio-btn { width: 25px; height: 25px; font-size: 0.78rem; }
+  .audio-label { font-size: 0.62rem; }
+  .ad-audio-player { padding: 1rem; }
+  .music-icon { font-size: 1.1rem; }
+  .audio-time { font-size: 0.65rem; min-width: 28px; }
+  .audio-vol { display: none; }
 }
 
-/* Tiny phones */
-@media (max-width: 360px) {
-  .fragment-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
+/* Compact phones: iPhone SE 1st gen, small Androids ~375px */
+@media (max-width: 390px) {
+  .puzzle-grid { max-width: 240px; gap: 18px; }
+  .puzzle-slot { width: 78px; height: 78px; }
+  .order-slot  { width: 78px; height: 78px; }
+
+  .fragment-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
+  .creators-grid { grid-template-columns: 1fr; }
   .hero-title {
 
     letter-spacing: 0.04em;
@@ -860,398 +798,91 @@ h3.text-gold,
 }
 
 
-
-/* Wrapper controls image display area */
-.chapter-img-wrap {
-  width: 100%;
-  background: #111;               /* dark bg behind image */
+/* ── Creator Photos & LinkedIn ─────────────────────────────── */
+.creator-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 12px;
-  min-height: 180px;
 }
 
-/* Image fits fully inside — no cropping ever */
-.chapter-img-wrap img {
-  max-width: 100%;
-  max-height: 200px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+.creator-img-wrap {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 14px;
+  border: 2px solid var(--card-border);
+  transition: border-color var(--transition);
+  flex-shrink: 0;
+}
+
+.creator-card:hover .creator-img-wrap {
+  border-color: var(--gold);
+}
+
+.creator-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
   display: block;
 }
 
-/* Card title consistent with site fonts */
-.chapter-card .card-title {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  letter-spacing: 0.05em;
-  color: #ffffff;
-  margin-bottom: 6px;
-}
-
-/* ─────────────────────────────────────────
-   COMPLETED BADGE
-   Overlays the card when chapter is done
-   ───────────────────────────────────────── */
-.chapter-card {
-  position: relative;
-}
-
-.chapter-done-badge {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.75);
-  color: #00ff88;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 4px 10px;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 255, 136, 0.4);
-  pointer-events: none;
-  z-index: 10;
-}
-
-/* ─────────────────────────────────────────
-   EPILOGUE BUTTON
-   Only shows when all 3 chapters done
-   ───────────────────────────────────────── */
-.btn-epilogue {
-  display: inline-block;
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  letter-spacing: 0.1em;
-  color: #000;
-  background: var(--gold);
-  border-radius: 8px;
-  padding: 14px 36px;
-  text-decoration: none;
-  font-weight: 700;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  animation: pulse-gold 2s infinite;
-}
-
-.btn-epilogue:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(233, 177, 9, 0.6);
-  color: #000;
-}
-
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 10px rgba(233,177,9,0.4); }
-  50%       { box-shadow: 0 0 24px rgba(233,177,9,0.8); }
-}
-
-/* ─────────────────────────────────────────
-   RESET BUTTON
-   ───────────────────────────────────────── */
-.btn-reset {
-  background: none;
-  border: 1px solid rgba(201, 168, 76, 0.35);
-  color: rgba(201, 168, 76, 0.6);
-  font-family: 'Lato', sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  padding: 7px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.btn-reset:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-}
-/* Pool of draggable chapter cards — stacked column like puzzle-right */
-.order-pool {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-/* Each draggable card — reuses puzzle-tile base, adds label */
-.order-card {
-  width: 110px;
-  height: 110px;
-  flex-direction: column;
-  gap: 6px;
-  cursor: grab;
-}
-
-.order-card img {
-  width: 65%;
-  height: 65%;
-  object-fit: contain;
-}
-
-.order-card-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  color: #e9b109;
-  text-align: center;
-  letter-spacing: 0.04em;
-}
-
-.order-card.dragging {
-  opacity: 0.35;
-  cursor: grabbing;
-}
-
-/* Greys out a card that has been placed into a slot */
-.order-card.placed {
-  opacity: 0.25;
-  filter: grayscale(80%);
-  pointer-events: none;
-}
-
-/* Slot rows — number + slot side by side */
-.order-slots {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.order-slot-row {
-  display: flex;
+.creator-linkedin {
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-}
-
-.order-slot-number {
-  font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  color: #e9b109;
-  width: 20px;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-/* The slot itself reuses .puzzle-slot from home.css */
-/* Just override size to match the card */
-.order-slot {
-  width: 100px;
-  height: 100px;
-  position: relative;
-}
-
-/* Highlight when dragging over */
-.order-slot.drag-over {
-  border-color: #e9b109 !important;
-  background: rgba(233,177,9,0.1) !important;
-}
-
-/* Slot filled state */
-.order-slot.active {
-  border-style: solid;
-  border-color: rgba(233,177,9,0.5);
-}
-
-.order-slot img {
-  width: 75%;
-  height: 75%;
-  object-fit: contain;
-}
-
-/* ✕ remove button inside a filled slot */
-.order-slot-remove {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  background: none;
-  border: none;
-  color: #666;
-  font-size: 0.85rem;
-  cursor: pointer;
-  line-height: 1;
-  padding: 0;
-}
-.order-slot-remove:hover { color: #e9b109; }
-
-/* Mobile — stack pool on top, slots below (same as puzzle-wrapper mobile) */
-@media (max-width: 600px) {
-  .order-pool {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .order-card {
-    width: 90px;
-    height: 90px;
-  }
-  .order-slot {
-    width: 86px;
-    height: 86px;
-  }
-}
-
-
-/* ── Audio Player ───────────────────────────────────────────────── */
-.ad-audio-player {
-  background: rgba(201,168,76,0.06);
-  border: 1px solid rgba(201,168,76,0.25);
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
-  max-width: 520px;
-  width: 100%;
-  backdrop-filter: blur(1px);
-}
-
-.audio-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: 'Cinzel', serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1rem;
-}
-
-.audio-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-/* Play/Pause circle button */
-.audio-btn {
-  background: var(--gold);
-  border: none;
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dark);
-  font-size: 1rem;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background var(--transition), transform var(--transition);
-}
-
-.audio-btn:hover {
-  background: var(--gold-light);
-  transform: scale(1.08);
-}
-
-/* Progress bar track + fill */
-.audio-progress-wrap {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.audio-progress-bg {
-  flex: 1;
-  height: 4px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 4px;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.audio-progress-bar {
-  height: 100%;
-  width: 0%;
-  background: var(--gold);
-  border-radius: 4px;
-  transition: width 0.1s linear;
-}
-
-/* Time display */
-.audio-time {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  min-width: 36px;
-  text-align: right;
+  gap: 5px;
+  margin-top: 10px;
   font-family: var(--font-body);
-}
-
-/* Volume */
-.audio-vol {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   color: var(--gold);
-  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1px solid rgba(233,177,9,0.3);
+  border-radius: 20px;
+  padding: 4px 12px;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
 }
 
-.vol-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 60px;
-  height: 3px;
-  border-radius: 3px;
-  background: rgba(255,255,255,0.15);
-  outline: none;
-  cursor: pointer;
-}
-
-.vol-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+.creator-linkedin:hover {
   background: var(--gold);
-  cursor: pointer;
+  color: #000;
+  border-color: var(--gold);
 }
 
-.vol-slider::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--gold);
-  border: none;
-  cursor: pointer;
+.creator-linkedin svg {
+  flex-shrink: 0;
 }
 
-/* Hide volume on very small screens */
+/* Tablet: slightly smaller circle */
+@media (max-width: 768px) {
+  .creator-img-wrap {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+/* Mobile: single column, medium circle */
+@media (max-width: 600px) {
+  .creators-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .creator-img-wrap {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Very small phones: single column, smaller circle */
 @media (max-width: 380px) {
-  .audio-vol { display: none; }
-}
-/* Hide volume on very small screens */
-@media (max-width: 280px) {
-  .audio-vol { display: none; }
-}
-.flip {
-  display: inline-block;
-  transform: scaleX(-1);
-}
-
-/* Volume on its own row below the progress bar */
-.audio-vol-row {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.85rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid rgba(201,168,76,0.15);
-  color: var(--gold);
-  font-size: 0.9rem;
-}
-
-.vol-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.7;
-}
-
-.vol-slider {
-  flex: 1;
-  max-width: 160px;
-}
-
-/* Remove the old hide rule — volume is always visible now */
-@media (max-width: 380px) {
-  .audio-vol { display: none; }
+  .creators-grid {
+    grid-template-columns: 1fr;
+    max-width: 260px;
+  }
+  .creator-img-wrap {
+    width: 72px;
+    height: 72px;
+  }
+  .creator-name { font-size: 0.85rem; }
+  .creator-role { font-size: 0.68rem; }
 }

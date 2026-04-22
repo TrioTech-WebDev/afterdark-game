@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <!-- Navbar-->
+   <!-- Navbar-->
     <nav class="navbar navbar-dark fixed-top" id="navbar">
         <div class="container">
 
@@ -45,8 +45,7 @@
             <li><a href="../index.html#howtoplay" class="menu-link">Instructions</a></li>
         </ul>
     </div>
-
-
+    
     <!-- Chapter Section -->
     <section id="chapter-hero" class="hero-section text-center" style="padding: 100px 20px;">
         <div class="container d-flex flex-column align-items-center">
@@ -68,12 +67,48 @@
 
             <div class="mb-4"></div>
 
+         
             <!-- Audio Player -->
-            <div class="audio-box mx-auto">
-                <p class="audio-label text-warning">🎧 Bloody Microphone Audio</p>
-                <audio id="mainAudio" controls src="../Assets/audio/bloody-microphone.mp3"></audio>
-                <a id="backBtn" class="btn btn-warning mt-4">← Back to Chapter</a>
+            <div class="ad-audio-player mx-auto">
+                <!-- LABEL -->
+                <div class="audio-label">
+                    <span class="music-icon">♫</span>
+                    <span>Bloody Microphone Audio</span>
+                </div>
+
+                <!-- CONTROLS ROW -->
+                <div class="audio-controls">
+
+                    <!-- PLAY / PAUSE -->
+                    <button class="audio-btn" id="playBtn" onclick="togglePlay()">▶</button>
+
+                    <!-- STOP -->
+                    <button class="audio-btn" onclick="stopAudio()">⏹</button>
+
+                    <!-- REPLAY -->
+                    <button class="audio-btn" onclick="replayAudio()">↻</button>
+
+                    <!-- PROGRESS -->
+                    <div class="audio-progress-wrap">
+
+                        <div class="audio-progress-bg" id="progressBg" onclick="seekAudio(event)">
+                            <div class="audio-progress-bar" id="progressBar"></div>
+                        </div>
+
+                        <span class="audio-time" id="audioTime">0:00</span>
+
+                    </div>
+
+                </div>
+
             </div>
+
+
+            <audio id="mainAudio" src="../Assets/audio/usb.mp3"></audio>
+
+            <a id="backBtn" class="btn btn-warning mt-4">← Back to Chapter</a>
+        </div>
+
 
         </div>
     </section>
