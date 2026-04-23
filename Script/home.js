@@ -1,3 +1,4 @@
+
 // ============================================================
 //  home.js — Navbar + Completion Logic + Mini Toast Popups
 // ============================================================
@@ -159,7 +160,6 @@ function applyCompletedFragmentStyles() {
 
 // ── Mini toast popup ──────────────────────────────────────────
 function showToast({ title, msg, btnLabel, btnHref }) {
-  // Remove any existing toast
   const old = document.getElementById('adToast');
   if (old) old.remove();
 
@@ -174,12 +174,10 @@ function showToast({ title, msg, btnLabel, btnHref }) {
   `;
   document.body.appendChild(toast);
 
-  // Trigger animation
   requestAnimationFrame(() => {
     requestAnimationFrame(() => toast.classList.add('show'));
   });
 
-  // Auto-dismiss after 8s
   setTimeout(() => dismissToast(), 8000);
 }
 
@@ -200,28 +198,44 @@ function dismissToast() {
 
   if (!audio || !playBtn || !progressBar || !progressBg || !audioTime) return;
 
+  // ── Helpers to swap play/pause SVG icons ──────────────────
+  function showPlay() {
+    const pi = document.getElementById('playIcon');
+    const pa = document.getElementById('pauseIcon');
+    if (pi) pi.style.display = '';
+    if (pa) pa.style.display = 'none';
+  }
+
+  function showPause() {
+    const pi = document.getElementById('playIcon');
+    const pa = document.getElementById('pauseIcon');
+    if (pi) pi.style.display = 'none';
+    if (pa) pa.style.display = '';
+  }
+
+  // ── Controls ──────────────────────────────────────────────
   window.togglePlay = function () {
     if (audio.paused) {
       audio.play();
-      playBtn.textContent = '⏸';
+      showPause();
     } else {
       audio.pause();
-      playBtn.textContent = '▶';
+      showPlay();
     }
   };
 
   window.stopAudio = function () {
     audio.pause();
     audio.currentTime = 0;
-    playBtn.textContent = '▶';
+    showPlay();
     progressBar.style.width = '0%';
-    audioTime.textContent = '0:00';
+    audioTime.textContent   = '0:00';
   };
 
   window.replayAudio = function () {
     audio.currentTime = 0;
     audio.play();
-    playBtn.textContent = '⏸';
+    showPause();
   };
 
   window.setVolume = function (val) {
@@ -235,6 +249,7 @@ function dismissToast() {
     audio.currentTime = Math.max(0, Math.min(1, ratio)) * audio.duration;
   };
 
+  // ── Time formatting ───────────────────────────────────────
   function formatTime(s) {
     if (isNaN(s) || s < 0) return '0:00';
     const m   = Math.floor(s / 60);
@@ -242,20 +257,94 @@ function dismissToast() {
     return m + ':' + sec;
   }
 
+  // ── Events ───────────────────────────────────────────────
   audio.addEventListener('timeupdate', function () {
     if (!audio.duration) return;
     const pct = (audio.currentTime / audio.duration) * 100;
     progressBar.style.width = pct + '%';
-    audioTime.textContent = formatTime(audio.currentTime);
+    audioTime.textContent   = formatTime(audio.currentTime);
   });
 
   audio.addEventListener('ended', function () {
-    playBtn.textContent = '▶';
+    showPlay();
     progressBar.style.width = '0%';
-    audioTime.textContent = '0:00';
+    audioTime.textContent   = '0:00';
   });
 
   audio.addEventListener('loadedmetadata', function () {
     audioTime.textContent = formatTime(audio.duration);
   });
+})();
+
+// ── QR Scanner ────────────────────────────────────────────────
+let qrStream   = null;
+let qrInterval = null;
+
+window.openQrScanner = function () {
+  const modal = document.getElementById('qrModal');
+  if (!modal) return;
+  modal.style.display = 'flex';
+
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    .then(stream => {
+      qrStream = stream;
+      const video = document.getElementById('qrVideo');
+      video.srcObject = stream;
+      video.setAttribute('playsinline', true);
+      video.play();
+      qrInterval = setInterval(() => scanFrame(video), 400);
+    })
+    .catch(() => {
+      document.getElementById('qrStatus').textContent = 'Camera access denied.';
+    });
+};
+
+window.closeQrScanner = function () {
+  clearInterval(qrInterval);
+  if (qrStream) { qrStream.getTracks().forEach(t => t.stop()); qrStream = null; }
+  const modal = document.getElementById('qrModal');
+  if (modal) modal.style.display = 'none';
+};
+
+function scanFrame(video) {
+  if (video.readyState !== video.HAVE_ENOUGH_DATA) return;
+  const canvas = document.getElementById('qrCanvas');
+  const ctx    = canvas.getContext('2d');
+  canvas.width  = video.videoWidth;
+  canvas.height = video.videoHeight;
+  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+  if (typeof jsQR === 'undefined') {
+    document.getElementById('qrStatus').textContent = 'QR library not loaded.';
+    return;
+  }
+  const code = jsQR(imageData.data, imageData.width, imageData.height);
+  if (code && code.data) {
+    closeQrScanner();
+    try {
+      const url = new URL(code.data);
+      window.location.href = url.href;
+    } catch {
+      document.getElementById('qrStatus').textContent = 'Invalid QR code.';
+    }
+  }
+}
+// ── Mobile video autoplay fix ─────────────────────────────────
+(function () {
+  const vid = document.querySelector('.video-wrap video');
+  if (!vid) return;
+
+  // Try to play immediately
+  const tryPlay = () => vid.play().catch(() => {});
+  tryPlay();
+
+  // Also try on first user interaction (iOS Safari requires this)
+  const unlockOnTouch = () => {
+    tryPlay();
+    document.removeEventListener('touchstart', unlockOnTouch);
+    document.removeEventListener('touchend',   unlockOnTouch);
+  };
+  document.addEventListener('touchstart', unlockOnTouch, { passive: true });
+  document.addEventListener('touchend',   unlockOnTouch, { passive: true });
 })();

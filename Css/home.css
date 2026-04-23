@@ -39,6 +39,9 @@ body {
 .video-wrap video {
   width: 100%; height: 100%;
   object-fit: cover; opacity: 0.25;
+  /* Force GPU layer — helps mobile rendering */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 .video-overlay {
   position: absolute; inset: 0;
@@ -183,7 +186,9 @@ h3.text-gold, .section-heading {
   align-items: center;
   justify-content: center;
   padding: 10px;
-  min-height: 200px;
+  /* min-height: 200px; */
+/* To this: */
+min-height: unset;
 }
 .chapter-img-wrap img {
   max-width: 100%;
@@ -321,6 +326,7 @@ h3.text-gold, .section-heading {
 .music-icon { font-size: 1.3rem; }
 .audio-controls {
   display: flex; align-items: center; gap: 0.6rem;
+
 }
 .audio-btn {
   background: var(--gold); border: none;
@@ -702,109 +708,6 @@ h3.text-gold, .section-heading {
   transition: color var(--transition);
 }
 .ad-toast-dismiss:hover { color: var(--gold); }
-
-/* ── Responsive ────────────────────────────────────────────── */
-
-/* Tablet */
-@media (max-width: 768px) {
-  .reward-card { padding: 28px 18px; }
-  .reward-chapter-img { width: 80px; height: 80px; }
-}
-
-/* Large phones (iPhone 16, Samsung S-series etc ~430px wide) */
-@media (max-width: 600px) {
-  .hero-section { padding: 80px 16px 40px !important; min-height: unset; }
-  .hero-desc { margin-bottom: 16px !important; }
-  .hero-title {
-  font-size: clamp(1.5rem, 7vw, 2rem);
-  letter-spacing: 0.01em;
-  hyphens: auto;
-}
-
-  /* ── Puzzle grid: 3 square tiles, fills screen width ── */
-  .puzzle-wrapper {
-    flex-direction: column; align-items: center; gap: 20px;
-  }
-  .puzzle-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 100%; max-width: 320px; gap: 8px;
-  }
-  /* Square tiles via aspect-ratio */
-  .puzzle-tile {
-    width: 100%; height: auto;
-    aspect-ratio: 1 / 1;
-    padding: 0;
-    position: relative;
-  }
-  .puzzle-tile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center -30%;
-  display: block;
-  transform: scale(1.6);
-}
-
-  /* order-card: keep label visible, use contain */
-  .order-card .puzzle-tile img,
-  .order-card img {
-    width: 65%; height: 65%;
-    object-fit: contain;
-  }
-  .order-card-label {
-    font-size: 0.5rem;
-    letter-spacing: 0.03em;
-  }
-
-  /* ── Answer slots: row of 3 below grid ── */
-  .puzzle-right {
-    width: 100%; max-width: 320px; gap: 10px;
-  }
-  .puzzle-slots {
-    flex-direction: row; justify-content: center; gap: 8px;
-  }
-  .puzzle-slot {
-    width: 88px; height: 88px;
-  }
-  /* order-slot inherits .puzzle-slot sizing */
-  .order-slot { width: 88px; height: 88px; }
-
-  .creators-grid { grid-template-columns: 1fr; max-width: 300px; }
-}
-
-/* Standard phones: iPhone SE, smaller Androids ~390px */
-@media (max-width: 480px) {
-  .hero-title { font-size: clamp(1.3rem, 9vw, 2.2rem); }
-
-  .puzzle-grid { max-width: 300px; gap: 7px; }
-  .puzzle-slot { width: 82px; height: 82px; }
-  .order-slot  { width: 82px; height: 82px; }
-
-  .audio-btn { width: 25px; height: 25px; font-size: 0.78rem; }
-  .audio-label { font-size: 0.62rem; }
-  .ad-audio-player { padding: 1rem; }
-  .music-icon { font-size: 1.1rem; }
-  .audio-time { font-size: 0.65rem; min-width: 28px; }
-  .audio-vol { display: none; }
-
-}
-
-/* Compact phones: iPhone SE 1st gen, small Androids ~375px */
-@media (max-width: 390px) {
-  .puzzle-grid { max-width: 240px; gap: 18px; }
-  .puzzle-slot { width: 78px; height: 78px; }
-  .order-slot  { width: 78px; height: 78px; }
-
-  .fragment-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
-  .creators-grid { grid-template-columns: 1fr; }
-  .hero-title {
-
-    letter-spacing: 0.04em;
-  }
-}
-
-
 /* ── Creator Photos & LinkedIn ─────────────────────────────── */
 .creator-card {
   display: flex;
@@ -861,35 +764,102 @@ h3.text-gold, .section-heading {
   flex-shrink: 0;
 }
 
-/* Tablet: slightly smaller circle */
+
+
+/* ── Responsive ────────────────────────────────────────────── */
+/* ── Responsive ────────────────────────────────────────────── */
+
+/* Tablet */
 @media (max-width: 768px) {
-  .creator-img-wrap {
-    width: 88px;
-    height: 88px;
-  }
+  .reward-card { padding: 28px 18px; }
+  .reward-chapter-img { width: 80px; height: 80px; }
+  .creator-img-wrap { width: 88px; height: 88px; }
 }
 
-/* Mobile: single column, medium circle */
+/* Large phones (iPhone 16, Samsung S-series etc ~430px wide) */
 @media (max-width: 600px) {
-  .creators-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-section { padding: 80px 16px 40px !important; min-height: unset; }
+  .hero-desc { margin-bottom: 16px !important; }
+  .hero-title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    letter-spacing: 0.01em;
+    hyphens: auto;
   }
-  .creator-img-wrap {
-    width: 80px;
-    height: 80px;
+  .chapter-img-wrap { padding: 0; }
+  .chapter-img-wrap img {
+    width: 100%;
+    max-height: 260px;
+    height: auto;
+    object-fit: contain;
   }
+  .puzzle-wrapper { flex-direction: column; align-items: center; gap: 20px; }
+  .puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%; max-width: 320px; gap: 8px;
+  }
+  .puzzle-tile {
+    width: 100%; height: auto;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    position: relative;
+  }
+  .puzzle-tile img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center -30%;
+    display: block;
+    transform: scale(1.6);
+  }
+  .order-card .puzzle-tile img,
+  .order-card img { width: 65%; height: 65%; object-fit: contain; }
+  .order-card-label { font-size: 0.5rem; letter-spacing: 0.03em; }
+  .puzzle-right { width: 100%; max-width: 320px; gap: 10px; }
+  .puzzle-slots { flex-direction: row; justify-content: center; gap: 8px; }
+  .puzzle-slot { width: 88px; height: 88px; }
+  .order-slot { width: 88px; height: 88px; }
+  .creators-grid { grid-template-columns: repeat(2, 1fr); }
+  .creator-img-wrap { width: 80px; height: 80px; }
 }
 
-/* Very small phones: single column, smaller circle */
-@media (max-width: 400px) {
-  .creators-grid {
-    grid-template-columns: 1fr;
-    max-width: 260px;
+/* Standard phones: iPhone SE, smaller Androids ~390px */
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(1.3rem, 9vw, 2.2rem); letter-spacing: 0.04em; }
+  .puzzle-grid { max-width: 300px; gap: 7px; }
+  .puzzle-slot { width: 82px; height: 82px; }
+  .order-slot { width: 82px; height: 82px; }
+  .audio-btn { width: 25px; height: 25px; font-size: 0.78rem; }
+  .audio-label { font-size: 0.62rem; }
+  .ad-audio-player { padding: 1rem; }
+  .music-icon { font-size: 1.1rem; }
+  .audio-time { font-size: 0.65rem; min-width: 28px; }
+  .audio-vol { display: none; }
+  .chapter-img-wrap { min-height: unset; padding: 0; }
+  .chapter-img-wrap img {
+    width: 100%;
+    max-height: 220px;
+    height: auto;
+    object-fit: contain;
   }
-  .creator-img-wrap {
-    width: 72px;
-    height: 72px;
-  }
+  .creators-grid { grid-template-columns: 1fr; max-width: 260px; }
+  .creator-img-wrap { width: 72px; height: 72px; }
   .creator-name { font-size: 0.85rem; }
   .creator-role { font-size: 0.68rem; }
+}
+
+/* Compact phones: iPhone SE 1st gen, small Androids ~375px */
+@media (max-width: 390px) {
+  .puzzle-grid { max-width: 240px; gap: 18px; }
+  .puzzle-slot { width: 78px; height: 78px; }
+  .order-slot { width: 78px; height: 78px; }
+  .fragment-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .creators-grid { grid-template-columns: 1fr; }
+  .hero-title { letter-spacing: 0.04em; }
+  .chapter-img-wrap { min-height: unset; padding: 0; }
+  .chapter-img-wrap img {
+    width: 100%;
+    max-height: 200px;
+    height: auto;
+    object-fit: contain;
+  }
 }
